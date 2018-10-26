@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_x_I20EPtEeiIKLjcIkPhSg" id="_x_HosEPtEeiIKLjcIkPhSg" label="EmailNotification" creationDate="2018-04-19T11:21:57.564-0500" modificationDate="2018-09-05T17:35:33.539-0500" version="0.1" statusCode="" item="_x_I20kPtEeiIKLjcIkPhSg" displayName="EmailNotification">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_x_I20UPtEeiIKLjcIkPhSg" path="Salesforce" locked="true" lockDate="2018-10-17T14:16:21.961-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_x_I20kPtEeiIKLjcIkPhSg" property="_x_I20EPtEeiIKLjcIkPhSg" state="_x_I20UPtEeiIKLjcIkPhSg">
+    <process href="EmailNotification_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

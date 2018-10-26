@@ -1,0 +1,984 @@
+DROP TABLE IF EXISTS "public".tmp_feed;
+CREATE TABLE "public".tmp_feed
+(
+	addressline1	VARCHAR (70),
+	addressline2	VARCHAR (70),
+	addressline_extra	VARCHAR (70),
+	city	VARCHAR (70),
+	province	VARCHAR (70),
+	state	VARCHAR (70),
+	zip	VARCHAR (70),
+	country	VARCHAR (70),
+	address_extra1	VARCHAR (255),
+	address_extra2	VARCHAR (255),
+	address_extra3	VARCHAR (255),
+	address_extra4	VARCHAR (255),
+	address_extra5	VARCHAR (255),
+	last_name	VARCHAR (60),
+	first_name	VARCHAR (60),
+	middle_name	VARCHAR (60),
+	date_of_birth	TIMESTAMP,
+	gender	VARCHAR (1),
+	sourcetypecode	VARCHAR (5),
+	testyear	INT4,
+	emailAddress	VARCHAR (50),
+	student_extra1	VARCHAR (255),
+	student_extra2	VARCHAR (255),
+	student_extra3	VARCHAR (255),
+	student_extra4	VARCHAR (255),
+	student_extra5	VARCHAR (255),
+	attendinghighschool_code	VARCHAR (10),
+	adminhighschool_code	VARCHAR (10),
+	currenthighschool_code	VARCHAR (10),
+	verbal_score	INT4,
+	math_score	INT4,
+	writing_score	INT4,
+	selection_index	INT4,
+	testdayformcode	VARCHAR (6),
+	studenteligibility	INT4,
+	testeligibility	INT4,
+	batchpascode	VARCHAR (20),
+	accesscode	VARCHAR (10),
+	cb_student_id	INT4,
+	detail_extra1	VARCHAR (255),
+	detail_extra2	VARCHAR (255),
+	detail_extra3	VARCHAR (255),
+	detail_extra4	VARCHAR (255),
+	detail_extra5	VARCHAR (255),
+	totalscore	INT4,
+	testdate	DATE,
+	mathscore	INT4,
+	readingwritingscore	INT4,
+	essayscore	INT4,
+	attendinghighschool_code_sat	VARCHAR (10)
+);
+
+-- setting permission
+ALTER TABLE "public".tmp_feed OWNER TO "pega@iway";
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES, RULE ON "public".tmp_feed TO "pega@iway";
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES, RULE ON "public".tmp_feed TO GROUP nms_etl;
+
+
+COPY public.sample_raw
+FROM 'C:\temp\sample.csv' 
+DELIMITER '|' 
+CSV HEADER;
+
+
+drop table if exists first_name_with_score;
+create temp table first_name_with_score (
+	first_name varchar(60),
+	score	int4
+);
+insert into first_name_with_score
+	select distinct 
+		lower(first_name), wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'first_name'
+;
+create index idx_first_name on first_name_with_score(first_name);
+select * from first_name_with_score;
+
+drop table if exists last_name_with_score;
+create temp table last_name_with_score (
+	last_name varchar(60),
+	score	int4
+);
+insert into last_name_with_score
+	select distinct 
+		lower(last_name), wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'last_name'
+;
+create index idx_last_name on last_name_with_score(last_name);
+select * from last_name_with_score;
+
+drop table if exists middle_name_with_score;
+create temp table middle_name_with_score (
+	middle_name varchar(60),
+	score	int4
+);
+insert into middle_name_with_score
+	select distinct 
+		lower(middle_name), wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'middle_name'
+;
+create index idx_middle_name on middle_name_with_score(middle_name);
+select * from middle_name_with_score;
+
+
+select sr.*,
+	(coalesce(fnc.score, 0) + coalesce(lnc.score, 0) + coalesce(mnc.score, 0)) as matching_score
+from sample_raw sr
+left join first_name_with_score fnc
+on lower(sr.first_name) = fnc.first_name
+left join last_name_with_score lnc
+on lower(sr.last_name) = lnc.last_name
+left join middle_name_with_score mnc
+on lower(sr.middle_name) = mnc.middle_name
+;
+
+
+create index idx_sample_raw on sample_raw(first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code);
+
+drop table if exists first_name_with_score;
+create temp table first_name_with_score (
+	first_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into first_name_with_score
+	select
+		lower(first_name) as first_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'first_name'
+	group by first_name, student_id, score
+;
+create index idx_first_name on first_name_with_score(first_name);
+--select * from first_name_with_score;
+
+drop table if exists last_name_with_score;
+create temp table last_name_with_score (
+	last_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into last_name_with_score
+	select 
+		lower(last_name) as last_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'last_name'
+	group by last_name, student_id, score
+;
+create index idx_last_name on last_name_with_score(last_name);
+--select * from last_name_with_score;
+
+drop table if exists middle_name_with_score;
+create temp table middle_name_with_score (
+	middle_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into middle_name_with_score
+	select
+		lower(middle_name) as middle_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'middle_name'
+	group by middle_name, student_id, score
+;
+create index idx_middle_name on middle_name_with_score(middle_name);
+--select * from middle_name_with_score;
+
+drop table if exists addressline1_with_score;
+create temp table addressline1_with_score (
+	addressline1 varchar(70),
+	student_id int4,
+	score	int4
+);
+insert into addressline1_with_score
+	select 
+		lower(addressline1) as addressline1, 
+		student_id,
+		wt.weight as score
+	from student_address sta
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'address_line1'
+	group by addressline1, student_id, score
+;
+create index idx_addressline1 on addressline1_with_score(addressline1);
+--select * from addressline1_with_score;
+
+drop table if exists dob_with_score;
+create temp table dob_with_score (
+	date_of_birth timestamp,
+	student_id int4,
+	score	int4
+);
+insert into dob_with_score
+	select 
+		date_of_birth, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'date_of_birth'
+	group by date_of_birth, student_id, score
+;
+create index idx_dob on dob_with_score(date_of_birth);
+--select * from dob_with_score;
+
+drop table if exists attending_hs_code_with_score;
+create temp table attending_hs_code_with_score (
+	attendinghighschool_code varchar(10),
+	student_id int4,
+	score	int4
+);
+insert into attending_hs_code_with_score
+	select 
+		attendinghighschool_code, 
+		student_id,
+		wt.weight as score
+	from studentdetail std
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'attending_hs_code'
+	group by attendinghighschool_code, student_id, score
+;
+create index idx_attending_hs_code on attending_hs_code_with_score(attendinghighschool_code);
+--select * from attending_hs_code_with_score;
+
+drop table if exists record_with_score;
+create temp table record_with_score (
+	first_name varchar(60),
+	last_name varchar(60),
+	middle_name varchar(60),
+	date_of_birth timestamp,
+	addressline1 varchar(70),
+	attendinghighschool_code varchar(10),
+	student_id int4,
+	score	int4
+);
+insert into record_with_score
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	student_id, coalesce(fnc.score, 0) as score
+from sample_raw sr
+join first_name_with_score fnc
+on lower(sr.first_name) = fnc.first_name
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	student_id, coalesce(lnc.score, 0) as score
+from sample_raw sr
+left join last_name_with_score lnc
+on lower(sr.last_name) = lnc.last_name
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	student_id, coalesce(mnc.score, 0) as score
+from sample_raw sr
+left join middle_name_with_score mnc
+on lower(sr.middle_name) = mnc.middle_name
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	student_id, coalesce(alc.score, 0) as score
+from sample_raw sr
+left join addressline1_with_score alc
+on lower(sr.addressline1) = alc.addressline1
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	student_id, coalesce(dbc.score, 0) as score
+from sample_raw sr
+left join dob_with_score dbc
+on sr.date_of_birth = dbc.date_of_birth
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	student_id, coalesce(ahsc.score, 0) as score
+from sample_raw sr
+left join attending_hs_code_with_score ahsc
+on sr.attendinghighschool_code = ahsc.attendinghighschool_code
+;
+--create index idx_record_with_score on record_with_score(first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id);
+--select * from record_with_score;
+
+--drop table if exists public.tmp_record_scores3;
+--create table public.tmp_record_scores3 as
+select distinct
+	first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code,
+	first_value(student_id) over (partition by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code order by score desc rows between unbounded preceding and current row) as student_id,
+	first_value(score) over (partition by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code order by score desc rows between unbounded preceding and current row) as score
+from (
+	select first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, 
+		student_id, sum(score) as score
+	from record_with_score
+	group by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id
+) tt
+;
+
+select * from tmp_record_scores2 where score >= 67;
+
+--AALALU	LASTEOOC	A	2001-10-06 00:00:00	729 SQUALICUM PKWY	005653	861814	103
+--AALILSA	LASTDSSSSS		2001-10-14 00:00:00	761 W JERSEY AVE	006116	264471	58
+
+--select matching('OOA', 'CCIECLEC', null, '2000-09-07 00:00:00','2 NORTH WINFIELD RD', null);
+
+
+SELECT
+  pid,
+  now() - pg_stat_activity.query_start AS duration,
+  query,
+  state
+FROM pg_stat_activity
+WHERE (now() - pg_stat_activity.query_start) > interval '5 minutes';
+
+SELECT pg_cancel_backend(__pid__); 
+SELECT pg_terminate_backend(__pid__);
+
+-NIJAPALIA	LASTOONSOIID	ANAAENAEE	2001-10-18 00:00:00	738 NAVARRE AVE		614642	18
+AAA	LIRIMM	ONNONN	2000-02-18 00:00:00	90 BRICK RD		678112	39
+AAAA	LASTBOOV-VO	LLNN	2000-05-13 00:00:00	71 E BELVIDERE RD	006717	628168	103
+AAAA	LASTNAAFNRNN		2000-04-20 00:00:00	71 E MCPHERSON AVE	004081	443712	97
+AAAAA	LASTTAHMDHMAZAA		2000-07-17 00:00:00	71226 E MISSION AVE		209728	78
+
+select * from sample_raw
+where first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code
+in (
+('AAAAA',	'LASTTAHMDHMAZAA',		'2000-07-17 00:00:00',	'71226 E MISSION AVE', null	),
+('-NIJAPALIA',	'LASTOONSOIID',	'ANAAENAEE',	'2001-10-18 00:00:00',	'738 NAVARRE AVE', null),
+('AAA',	'LIRIMM',	'ONNONN',	'2000-02-18 00:00:00'	'90 BRICK RD', null),
+('AAAA',	'LASTBOOV-VO',	'LLNN',	'2000-05-13 00:00:00',	'71 E BELVIDERE RD',	'006717'),
+('AAAA',	'LASTNAAFNRNN',	null,	'2000-04-20 00:00:00',	'71 E MCPHERSON AVE',	'004081')
+);
+
+
+create temp table small_sample as
+select * from sample_raw
+where (first_name, last_name, date_of_birth, addressline1)
+in (
+('AAAAA',	'LASTTAHMDHMAZAA',	'2000-07-17 00:00:00',	'71226 E MISSION AVE'	),
+('-NIJAPALIA',	'LASTOONSOIID',	'2001-10-18 00:00:00',	'738 NAVARRE AVE'),
+('AAA',	'LIRIMM',	'2000-02-18 00:00:00',	'90 BRICK RD'),
+('AAAA',	'LASTBOOV-VO',	'2000-05-13 00:00:00',	'71 E BELVIDERE RD'),
+('AAAA',	'LASTNAAFNRNN',	'2000-04-20 00:00:00',	'71 E MCPHERSON AVE')
+);
+
+drop table if exists first_name_with_score;
+create temp table first_name_with_score (
+	first_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into first_name_with_score
+	select
+		lower(first_name) as first_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'first_name'
+	group by first_name, student_id, score
+;
+create index idx_first_name on first_name_with_score(first_name);
+--select * from first_name_with_score;
+
+drop table if exists last_name_with_score;
+create temp table last_name_with_score (
+	last_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into last_name_with_score
+	select 
+		lower(last_name) as last_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'last_name'
+	group by last_name, student_id, score
+;
+create index idx_last_name on last_name_with_score(last_name);
+--select * from last_name_with_score;
+
+drop table if exists middle_name_with_score;
+create temp table middle_name_with_score (
+	middle_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into middle_name_with_score
+	select
+		lower(middle_name) as middle_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'middle_name'
+	group by middle_name, student_id, score
+;
+create index idx_middle_name on middle_name_with_score(middle_name);
+--select * from middle_name_with_score;
+
+drop table if exists addressline1_with_score;
+create temp table addressline1_with_score (
+	addressline1 varchar(70),
+	student_id int4,
+	score	int4
+);
+insert into addressline1_with_score
+	select 
+		lower(addressline1) as addressline1, 
+		student_id,
+		wt.weight as score
+	from student_address sta
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'address_line1'
+	group by addressline1, student_id, score
+;
+create index idx_addressline1 on addressline1_with_score(addressline1);
+--select * from addressline1_with_score;
+
+drop table if exists dob_with_score;
+create temp table dob_with_score (
+	date_of_birth timestamp,
+	student_id int4,
+	score	int4
+);
+insert into dob_with_score
+	select 
+		date_of_birth, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'date_of_birth'
+	group by date_of_birth, student_id, score
+;
+create index idx_dob on dob_with_score(date_of_birth);
+--select * from dob_with_score;
+
+drop table if exists attending_hs_code_with_score;
+create temp table attending_hs_code_with_score (
+	attendinghighschool_code varchar(10),
+	student_id int4,
+	score	int4
+);
+insert into attending_hs_code_with_score
+	select 
+		attendinghighschool_code, 
+		student_id,
+		wt.weight as score
+	from studentdetail std
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'attending_hs_code'
+	group by attendinghighschool_code, student_id, score
+;
+create index idx_attending_hs_code on attending_hs_code_with_score(attendinghighschool_code);
+--select * from attending_hs_code_with_score;
+
+create temp table matching_scores as
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	t.student_id, t.score
+from small_sample sr
+left join lateral (
+	select student_id, score
+	from first_name_with_score s
+	where coalesce(lower(sr.first_name), '') = coalesce(s.first_name, '')
+) t on true
+where t.student_id is not null
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	t.student_id, t.score
+from small_sample sr
+left join lateral (
+	select student_id, score
+	from last_name_with_score s
+	where coalesce(lower(sr.last_name), '') = coalesce(s.last_name, '')
+) t on true
+where t.student_id is not null
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	t.student_id, t.score
+from small_sample sr
+left join lateral (
+	select student_id, score
+	from middle_name_with_score s
+	where coalesce(lower(sr.middle_name), '') = coalesce(s.middle_name, '')
+) t on true
+where t.student_id is not null
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	t.student_id, t.score
+from small_sample sr
+left join lateral (
+	select student_id, score
+	from dob_with_score s
+	where coalesce(sr.date_of_birth, current_date) = coalesce(s.date_of_birth, current_date)
+) t on true
+where t.student_id is not null
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	t.student_id, t.score
+from small_sample sr
+left join lateral (
+	select student_id, score
+	from addressline1_with_score s
+	where coalesce(lower(sr.addressline1), '') = coalesce(s.addressline1, '')
+) t on true
+where t.student_id is not null
+union all
+select sr.first_name, sr.last_name, sr.middle_name, sr.date_of_birth, sr.addressline1, sr.attendinghighschool_code, 
+	t.student_id, t.score
+from small_sample sr
+left join lateral (
+	select student_id, score
+	from attending_hs_code_with_score s
+	where coalesce(sr.attendinghighschool_code, '') = coalesce(s.attendinghighschool_code, '')
+) t on true
+where t.student_id is not null
+;
+
+select distinct
+	first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code,
+	first_value(student_id) over (partition by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code order by score desc rows between unbounded preceding and current row) as student_id,
+	first_value(score) over (partition by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code order by score desc rows between unbounded preceding and current row) as score
+from (
+	select first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, 
+		student_id, sum(score) as score
+	from matching_scores
+	group by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id
+) tt
+;
+
+select first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id, score 
+from (
+	select 
+		first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id, score,
+		row_number() over (partition by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code order by score desc) as row_num
+	--	first_value(student_id) over (partition by id order by score desc rows between unbounded preceding and current row) as student_id,
+	--	first_value(score) over (partition by id order by score desc rows between unbounded preceding and current row) as score
+	from (
+		select first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id, sum(score) as score
+		from all_matching_scores
+		group by first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id
+	) t1
+) t2
+where row_num = 1
+;
+
+
+truncate sample_with_id;
+insert into sample_with_id
+(
+addressline1,
+addressline2,
+addressline_extra,
+city,
+province,
+state,
+zip,
+country,
+address_extra1,
+address_extra2,
+address_extra3,
+address_extra4,
+address_extra5,
+last_name,
+first_name,
+middle_name,
+date_of_birth,
+gender,
+sourcetypecode,
+testyear,
+emailaddress,
+student_extra1,
+student_extra2,
+student_extra3,
+student_extra4,
+student_extra5,
+attendinghighschool_code,
+adminhighschool_code,
+currenthighschool_code,
+verbal_score,
+math_score,
+writing_score,
+selection_index,
+testdayformcode,
+studenteligibility,
+testeligibility,
+batchpascode,
+accesscode,
+cb_student_id,
+detail_extra1,
+detail_extra2,
+detail_extra3,
+detail_extra4,
+detail_extra5,
+totalscore,
+testdate,
+mathscore,
+readingwritingscore,
+essayscore,
+attendinghighschool_code_sat
+)
+select * from sample_raw
+--where (first_name, last_name, date_of_birth, addressline1)
+--in (
+--('AAAAA',	'LASTTAHMDHMAZAA',	'2000-07-17 00:00:00',	'71226 E MISSION AVE'	),
+--('-NIJAPALIA',	'LASTOONSOIID',	'2001-10-18 00:00:00',	'738 NAVARRE AVE'),
+--('AAA',	'LIRIMM',	'2000-02-18 00:00:00',	'90 BRICK RD'),
+--('AAAA',	'LASTBOOV-VO',	'2000-05-13 00:00:00',	'71 E BELVIDERE RD'),
+--('AAAA',	'LASTNAAFNRNN',	'2000-04-20 00:00:00',	'71 E MCPHERSON AVE')
+--);
+
+create index idx_sample_with_id on sample_with_id(id);
+
+CREATE OR REPLACE FUNCTION public.next_student_id()
+RETURNS integer
+LANGUAGE plpgsql
+AS $function$
+
+BEGIN
+	
+return(select coalesce(max(student_id), 0)+1 from student);
+
+END;
+$function$
+
+select matching('BGVIIIEIN', 'AAAALAY', null, '2001-07-07 00:00:00','3 COMMUNITY DR', '002365');
+
+select coalesce(max(student_id), 0)+1 as next_student_id from student;
+select coalesce(max(student_id), 0) as current_student_id from student;
+
+select coalesce(max(studentdetail_id), 0)+1 as next_studentdetail_id from studentdetail;
+select coalesce(max(studentdetail_id), 0) as current_studentdetail_id from studentdetail;
+
+select coalesce(max(studentaddress_id), 0)+1 as next_studentaddress_id from student_address;
+select coalesce(max(studentaddress_id), 0) as current_studentaddress_id from student_address;
+
+select coalesce(max(scoreid), 0)+1 as next_satscore_id from sat where studentid= _studentid;
+select coalesce(max(scoreid), 0) as current_satscore_id from sat where studentid= _studentid;
+
+drop table if exists first_name_with_score;
+create temp table first_name_with_score (
+	first_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into first_name_with_score
+	select
+		lower(first_name) as first_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'first_name'
+	group by first_name, student_id, score
+;
+create index idx_first_name on first_name_with_score(first_name);
+--select * from first_name_with_score;
+
+drop table if exists last_name_with_score;
+create temp table last_name_with_score (
+	last_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into last_name_with_score
+	select 
+		lower(last_name) as last_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'last_name'
+	group by last_name, student_id, score
+;
+create index idx_last_name on last_name_with_score(last_name);
+--select * from last_name_with_score;
+
+drop table if exists middle_name_with_score;
+create temp table middle_name_with_score (
+	middle_name varchar(60),
+	student_id int4,
+	score	int4
+);
+insert into middle_name_with_score
+	select
+		lower(middle_name) as middle_name, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'middle_name'
+	group by middle_name, student_id, score
+;
+create index idx_middle_name on middle_name_with_score(middle_name);
+--select * from middle_name_with_score where middle_name <> '' order by middle_name;
+
+drop table if exists addressline1_with_score;
+create temp table addressline1_with_score (
+	addressline1 varchar(70),
+	student_id int4,
+	score	int4
+);
+insert into addressline1_with_score
+	select 
+		lower(addressline1) as addressline1, 
+		student_id,
+		wt.weight as score
+	from student_address sta
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'address_line1'
+	group by addressline1, student_id, score
+;
+create index idx_addressline1 on addressline1_with_score(addressline1);
+--select * from addressline1_with_score;
+
+drop table if exists dob_with_score;
+create temp table dob_with_score (
+	date_of_birth timestamp,
+	student_id int4,
+	score	int4
+);
+insert into dob_with_score
+	select 
+		date_of_birth, 
+		student_id,
+		wt.weight as score
+	from student stu
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'date_of_birth'
+	group by date_of_birth, student_id, score
+;
+create index idx_dob on dob_with_score(date_of_birth);
+--select * from dob_with_score;
+
+drop table if exists attending_hs_code_with_score;
+create temp table attending_hs_code_with_score (
+	attendinghighschool_code varchar(10),
+	student_id int4,
+	score	int4
+);
+insert into attending_hs_code_with_score
+	select 
+		attendinghighschool_code, 
+		student_id,
+		wt.weight as score
+	from studentdetail std
+	join matching_fields_weight_rf wt
+	on wt.matching_field = 'attending_hs_code'
+	group by attendinghighschool_code, student_id, score
+;
+create index idx_attending_hs_code on attending_hs_code_with_score(attendinghighschool_code);
+--select * from attending_hs_code_with_score;
+
+create temp table potential_match_weight as
+	select weight from matching_fields_weight_rf where matching_field = 'pot_matching_score'
+;
+
+create temp table exact_match_weight as 
+	select weight from matching_fields_weight_rf where matching_field = 'exact_matching_score'
+;
+
+-- calculate matching scores
+drop table if exists feed_with_matching_scores;
+create temp table feed_with_matching_scores as
+select first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id, score from (
+	select ft.first_name, ft.last_name, ft.middle_name, ft.date_of_birth, ft.addressline1, ft.attendinghighschool_code, 
+		t1.student_id, 
+		(coalesce(t1.score, 0) + coalesce(t2.score, 0) + coalesce(t3.score, 0) + coalesce(t4.score, 0) + coalesce(t5.score, 0) + coalesce(t6.score, 0)) as score
+	from tmp_feed ft
+	left join lateral (
+		select student_id, score
+		from first_name_with_score s
+		where coalesce(lower(ft.first_name), '') = coalesce(s.first_name, '')
+	) t1 on true
+	left join lateral (
+		select student_id, score
+		from last_name_with_score s
+		where coalesce(lower(ft.last_name), '') = coalesce(s.last_name, '')
+		and student_id = t1.student_id
+	) t2 on true
+	left join lateral (
+		select student_id, score
+		from middle_name_with_score s
+		where coalesce(lower(ft.middle_name), '') = coalesce(s.middle_name, '')
+		and student_id = t2.student_id
+	) t3 on true
+	left join lateral (
+		select student_id, score
+		from dob_with_score s
+		where coalesce(ft.date_of_birth, current_date) = coalesce(s.date_of_birth, current_date)
+		and student_id = t3.student_id
+	) t4 on true
+	left join lateral (
+		select student_id, score
+		from addressline1_with_score s
+		where coalesce(lower(ft.addressline1), '') = coalesce(s.addressline1, '')
+		and student_id = t4.student_id
+	) t5 on true
+	left join lateral (
+		select student_id, score
+		from attending_hs_code_with_score s
+		where coalesce(ft.attendinghighschool_code, '') = coalesce(s.attendinghighschool_code, '')
+		and student_id = t5.student_id
+	) t6 on true
+	where (
+		t1.student_id is not null
+		or t2.student_id is not null
+		or t3.student_id is not null
+		or t4.student_id is not null
+		or t5.student_id is not null
+		or t6.student_id is not null
+	)
+) tt 
+join potential_match_weight wt on true
+where score >= wt.weight
+;
+
+-- exactly matching records
+create temp table tmp_feed_exact_match as
+select ft.*
+from tmp_feed ft
+join feed_with_matching_scores fms
+on coalesce(ft.first_name, '') = coalesce(fms.first_name, '')
+and coalesce(ft.last_name, '') = coalesce(fms.last_name, '')
+and coalesce(ft.middle_name, '') = coalesce(fms.middle_name, '')
+and coalesce(ft.date_of_birth, current_date) = coalesce(fms.date_of_birth, current_date)
+and coalesce(ft.addressline1, '') = coalesce(fms.addressline1, '')
+and coalesce(ft.attendinghighschool_code, '') = coalesce(fms.attendinghighschool_code, '')
+join exact_match_weight wt on true
+where score >= wt.weight
+;
+
+-- potential matching records
+create temp table tmp_feed_potential_match as
+select ft.*
+from tmp_feed ft
+join feed_with_matching_scores fms
+on coalesce(ft.first_name, '') = coalesce(fms.first_name, '')
+and coalesce(ft.last_name, '') = coalesce(fms.last_name, '')
+and coalesce(ft.middle_name, '') = coalesce(fms.middle_name, '')
+and coalesce(ft.date_of_birth, current_date) = coalesce(fms.date_of_birth, current_date)
+and coalesce(ft.addressline1, '') = coalesce(fms.addressline1, '')
+and coalesce(ft.attendinghighschool_code, '') = coalesce(fms.attendinghighschool_code, '')
+join exact_match_weight wt_exact on true
+join potential_match_weight wt_pot on true
+where (score >= wt_pot.weight and score < wt_exact.weight)
+;
+
+-- non-matching records
+create temp table tmp_feed_no_match as
+select ft.*
+from tmp_feed ft
+left join feed_with_matching_scores fms
+on coalesce(ft.first_name, '') = coalesce(fms.first_name, '')
+and coalesce(ft.last_name, '') = coalesce(fms.last_name, '')
+and coalesce(ft.middle_name, '') = coalesce(fms.middle_name, '')
+and coalesce(ft.date_of_birth, current_date) = coalesce(fms.date_of_birth, current_date)
+and coalesce(ft.addressline1, '') = coalesce(fms.addressline1, '')
+and coalesce(ft.attendinghighschool_code, '') = coalesce(fms.attendinghighschool_code, '')
+where fms.first_name is null 
+and fms.last_name is null
+and fms.middle_name is null
+;
+
+select * from tmp_feed_no_match;
+
+-- function to get next student id
+CREATE OR REPLACE FUNCTION public.next_student_id()
+RETURNS integer
+LANGUAGE plpgsql
+AS $function$
+
+BEGIN
+	
+return(select coalesce(max(student_id), 0)+1 from student);
+
+END;
+$function$
+
+-- function to get next student address id
+CREATE OR REPLACE FUNCTION public.next_student_address_id()
+RETURNS integer
+LANGUAGE plpgsql
+AS $function$
+
+BEGIN
+	
+return(select coalesce(max(studentaddress_id), 0)+1 from student_address);
+
+END;
+$function$
+
+-- function to get next sat score id
+CREATE OR REPLACE FUNCTION public.next_sat_score_id(_studentid integer)
+RETURNS integer
+LANGUAGE plpgsql
+AS $function$
+
+BEGIN
+	
+return(select coalesce(max(scoreid), 0)+1 from sat where sat.studentid= _studentid);
+
+END;
+$function$
+
+-- function to get next student detail id
+CREATE OR REPLACE FUNCTION public.next_student_detail_id()
+RETURNS integer
+LANGUAGE plpgsql
+AS $function$
+
+BEGIN
+	
+return(select coalesce(max(studentdetail_id), 0)+1 from studentdetail);
+
+END;
+$function$
+
+-- function to get next student AE entry
+CREATE OR REPLACE FUNCTION public.next_student_ae_id()
+RETURNS integer
+LANGUAGE plpgsql
+AS $function$
+
+BEGIN
+	
+return(select coalesce(max(studentaeid), 0)+1 from alternateentry);
+
+END;
+$function$
+
+-- function to get next fallout id
+CREATE OR REPLACE FUNCTION public.next_fallout_id()
+RETURNS integer
+LANGUAGE plpgsql
+AS $function$
+
+BEGIN
+	
+return(select coalesce(max(fallout_id), 0)+1 from feed_fallout_records);
+
+END;
+$function$
+
+
+select public.next_student_id();
+select next_student_address_id();
+select next_sat_score_id(2::int8);
+select next_student_detail_id();
+select next_student_ae_id();
+select next_fallout_id();
+
+
+matching:
+100K - 10K 3s
+1M - 100K	69s (score), 156s (insert)
+4.9M - 1M	1m (load feed), 52min matching, 69min total
+
+full feed load into empty tables
+bulk load 50s
+matching 95s
+insert (4.9M) 16min,  18min total
+
+truncate all tables:
+
+truncate alternateentry;
+truncate entryform;
+truncate feed_fallout_records;
+truncate potentialmatch;
+truncate studentdetail;
+truncate student_address;
+truncate sat;
+truncate student;

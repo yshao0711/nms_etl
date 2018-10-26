@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_iBTGkLdbEeiCaN_NbOViQQ" id="_iBRRYLdbEeiCaN_NbOViQQ" label="Process_Staging_Survey_Data" creationDate="2018-09-13T08:47:18.776-0500" modificationDate="2018-10-12T09:46:55.417-0500" version="0.1" statusCode="" item="_iBTGkrdbEeiCaN_NbOViQQ" displayName="Process_Staging_Survey_Data">
+    <author href="../../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_iBTGkbdbEeiCaN_NbOViQQ" path="Medallia/Subjobs_Import" locked="true" lockDate="2018-10-16T16:40:40.507-0500">
+    <locker href="../../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_iBTGkrdbEeiCaN_NbOViQQ" property="_iBTGkLdbEeiCaN_NbOViQQ" state="_iBTGkbdbEeiCaN_NbOViQQ">
+    <process href="Process_Staging_Survey_Data_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

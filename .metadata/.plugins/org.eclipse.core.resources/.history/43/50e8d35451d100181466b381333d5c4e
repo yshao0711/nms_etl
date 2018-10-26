@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_nMUxcFrLEei_EJm82Z_azQ" id="_nMTjUFrLEei_EJm82Z_azQ" label="ProcessFeed" creationDate="2018-05-18T13:45:18.983-0500" modificationDate="2018-10-16T08:23:10.816-0500" version="0.1" statusCode="" item="_nMUxclrLEei_EJm82Z_azQ" displayName="ProcessFeed">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_nMUxcVrLEei_EJm82Z_azQ" path="Salesforce/Subjobs_Import" locked="true" lockDate="2018-10-16T08:09:53.496-0500">
+    <locker href="../talend.project#_zk0bcNDoEeiZP77ZcaPn7g"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_nMUxclrLEei_EJm82Z_azQ" property="_nMUxcFrLEei_EJm82Z_azQ" state="_nMUxcVrLEei_EJm82Z_azQ">
+    <process href="ProcessFeed_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd">
+  <talendfile:ContextType xmi:id="_dgDDENDwEei8iJaJKchqdA" confirmationNeeded="false" name="dev">
+    <contextParameter xmi:id="_dgDDEdDwEei8iJaJKchqdA" comment="" name="nms_db_Database" prompt="nms_db_Database?" promptNeeded="false" type="id_String" value="NMS1_dev"/>
+    <contextParameter xmi:id="_dgDDEtDwEei8iJaJKchqdA" comment="" name="nms_db_Schema" prompt="nms_db_Schema?" promptNeeded="false" type="id_String" value="public"/>
+    <contextParameter xmi:id="_dgDDE9DwEei8iJaJKchqdA" comment="" name="nms_db_Server" prompt="nms_db_Server?" promptNeeded="false" type="id_String" value="ec2-18-221-25-155.us-east-2.compute.amazonaws.com"/>
+    <contextParameter xmi:id="_dgDDFNDwEei8iJaJKchqdA" comment="" name="nms_db_Login" prompt="nms_db_Login?" promptNeeded="false" type="id_String" value="pega@iway"/>
+    <contextParameter xmi:id="_dgDDFdDwEei8iJaJKchqdA" comment="" name="nms_db_Password" prompt="nms_db_Password?" promptNeeded="false" type="id_Password" value="AgfnKm4E3u0="/>
+    <contextParameter xmi:id="_dgDDFtDwEei8iJaJKchqdA" comment="" name="nms_db_Port" prompt="nms_db_Port?" promptNeeded="false" type="id_String" value="5433"/>
+  </talendfile:ContextType>
+  <talendfile:ContextType xmi:id="_9ftbENV5EeiYHPP9Ydur-w" confirmationNeeded="false" name="prod">
+    <contextParameter xmi:id="_9ftbEdV5EeiYHPP9Ydur-w" comment="" name="nms_db_Database" prompt="nms_db_Database?" promptNeeded="false" type="id_String" value="NMS1"/>
+    <contextParameter xmi:id="_9ftbEtV5EeiYHPP9Ydur-w" comment="" name="nms_db_Schema" prompt="nms_db_Schema?" promptNeeded="false" type="id_String" value="public"/>
+    <contextParameter xmi:id="_9ftbE9V5EeiYHPP9Ydur-w" comment="" name="nms_db_Server" prompt="nms_db_Server?" promptNeeded="false" type="id_String" value="ec2-18-221-25-155.us-east-2.compute.amazonaws.com"/>
+    <contextParameter xmi:id="_9ftbFNV5EeiYHPP9Ydur-w" comment="" name="nms_db_Login" prompt="nms_db_Login?" promptNeeded="false" type="id_String" value="pega@iway"/>
+    <contextParameter xmi:id="_9ftbFdV5EeiYHPP9Ydur-w" comment="" name="nms_db_Password" prompt="nms_db_Password?" promptNeeded="false" type="id_Password" value="AgfnKm4E3u0="/>
+    <contextParameter xmi:id="_9ftbFtV5EeiYHPP9Ydur-w" comment="" name="nms_db_Port" prompt="nms_db_Port?" promptNeeded="false" type="id_String" value="5433"/>
+  </talendfile:ContextType>
+</xmi:XMI>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore">
+  <TalendMetadata:DatabaseConnection xmi:id="_5ai-8NHGEeaJE97Q8wxjVA" name="nms" id="_lLtHENHGEeaJE97Q8wxjVA" label="nms" dataPackage="_bv7w8NfuEeiw_aTJV2r7qQ _BppuYNHHEeaJE97Q8wxjVA" ContextMode="true" ContextId="_df210NDwEei8iJaJKchqdA" contextName="dev" DatabaseType="PostgreSQL" DriverClass="org.postgresql.Driver" URL="jdbc:postgresql://ec2-18-221-25-155.us-east-2.compute.amazonaws.com:5433/NMS1_dev" dbVersionString="V9_X" Port="context.nms_db_Port" Username="context.nms_db_Login" Password="context.nms_db_Password" ServerName="context.nms_db_Server" DatasourceName="" FileFieldName="" SID="context.nms_db_Database" SqlSynthax="SQL Syntax" DbmsId="postgres_id" ProductId="POSTGRESQL" AdditionalParams="" StandardSQL="true" SQLMode="false" UiSchema="context.nms_db_Schema">
+    <taggedValue xmi:id="_5ai-8dHGEeaJE97Q8wxjVA" tag="Is Conn Need Reload" value="true"/>
+    <taggedValue xmi:id="_5avMMNHGEeaJE97Q8wxjVA" tag="package filter" value=""/>
+    <taggedValue xmi:id="_5a2g8NHGEeaJE97Q8wxjVA" tag="Status" value=""/>
+    <taggedValue xmi:id="_5a2g8dHGEeaJE97Q8wxjVA" tag="Version" value="0.1"/>
+    <taggedValue xmi:id="_5a2g8tHGEeaJE97Q8wxjVA" tag="Purpose" value=""/>
+    <taggedValue xmi:id="_5a2g89HGEeaJE97Q8wxjVA" tag="Description" value=""/>
+    <taggedValue xmi:id="_5a2g9NHGEeaJE97Q8wxjVA" tag="Author" value=""/>
+    <taggedValue xmi:id="_5a2g9dHGEeaJE97Q8wxjVA" tag="otherParameter"/>
+    <taggedValue xmi:id="_5dXpcNHGEeaJE97Q8wxjVA" tag="DB ProductName" value="PostgreSQL"/>
+    <taggedValue xmi:id="_5dXpcdHGEeaJE97Q8wxjVA" tag="DB ProductVersion" value="10.4"/>
+    <taggedValue xmi:id="_5dXpctHGEeaJE97Q8wxjVA" tag="DB IdentifierQuoteString" value="&quot;"/>
+    <queries xmi:id="_siGxgNO2Eean-qfDVKAa0A"/>
+    <parameters xmi:id="_HPRFcNDsEeiZP77ZcaPn7g" key="CONN_PARA_KEY_USERNAME" value="context.nms_dev_Login"/>
+    <parameters xmi:id="_SHe6QNDuEei8iJaJKchqdA" key="CONN_PARA_KEY_MAPRDB_TABLE_NS_MAPPING" value=""/>
+  </TalendMetadata:DatabaseConnection>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_bv7w8NfuEeiw_aTJV2r7qQ" name="NMS1_dev" dataManager="_5ai-8NHGEeaJE97Q8wxjVA">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_bv7w8dfuEeiw_aTJV2r7qQ" name="public"/>
+  </orgomg.cwm.resource.relational:Catalog>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_BppuYNHHEeaJE97Q8wxjVA" name="zipcar" dataManager="_5ai-8NHGEeaJE97Q8wxjVA">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_BppuYdHHEeaJE97Q8wxjVA" name="marketing_dev1"/>
+  </orgomg.cwm.resource.relational:Catalog>
+</xmi:XMI>

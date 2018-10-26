@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_Lo3nAOolEeaPUd9CKH_hdQ" id="_v_WyAGqdEei8qtdE7dqKbQ" label="Process_MonthlyHistoricalMemberDetails" purpose="Compute historical monthly member details" description="Compute historical monthly member details" creationDate="2017-02-03T09:26:49.708-0600" modificationDate="2018-06-07T17:01:13.776-0500" version="0.1" statusCode="" item="_Lo3nAuolEeaPUd9CKH_hdQ" displayName="Process_MonthlyHistoricalMemberDetails">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_v_nQsGqdEei8qtdE7dqKbQ" path="Process_Monthly_Member_Details" locked="true" lockDate="2018-10-16T10:48:19.144-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_Lo3nAuolEeaPUd9CKH_hdQ" property="_Lo3nAOolEeaPUd9CKH_hdQ" state="_v_nQsGqdEei8qtdE7dqKbQ">
+    <process href="Process_MonthlyHistoricalMemberDetails_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

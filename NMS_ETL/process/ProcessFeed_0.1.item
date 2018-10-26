@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="dev" jobType="Standard">
+  <context confirmationNeeded="false" name="dev">
+    <contextParameter comment="Business Day of process. Optional, defaults to current day." name="RunDate" prompt="RunDate?" promptNeeded="false" type="id_Date" value=""/>
+    <contextParameter comment="" name="nms_db_Schema" prompt="nms_db_Schema?" promptNeeded="false" type="id_String" value="public"/>
+    <contextParameter comment="" name="nms_db_Port" prompt="nms_db_Port?" promptNeeded="false" type="id_String" value="5433"/>
+    <contextParameter comment="" name="nms_db_Login" prompt="nms_db_Login?" promptNeeded="false" type="id_String" value="pega@iway"/>
+    <contextParameter comment="" name="nms_db_Server" prompt="nms_db_Server?" promptNeeded="false" type="id_String" value="ec2-18-221-25-155.us-east-2.compute.amazonaws.com"/>
+    <contextParameter comment="" name="nms_db_Database" prompt="nms_db_Database?" promptNeeded="false" type="id_String" value="NMS1_dev"/>
+    <contextParameter comment="" name="nms_db_Password" prompt="nms_db_Password?" promptNeeded="false" type="id_Password" value="AgfnKm4E3u0="/>
+    <contextParameter comment="" name="feedIncomingDir" prompt="feedIncomingDir?" promptNeeded="false" type="id_String" value="/data/talend/feeds/incoming"/>
+    <contextParameter comment="" name="feedFileName" prompt="feedFileName?" promptNeeded="false" type="id_String" value="new_sample.csv"/>
+    <contextParameter comment="" name="feedArchiveDir" prompt="feedArchiveDir?" promptNeeded="false" type="id_String" value="/data/talend/feeds/archive"/>
+    <contextParameter comment="" name="feedTableName" prompt="feedTableName?" promptNeeded="false" type="id_String" value="tmp_feed"/>
+  </context>
+  <context confirmationNeeded="false" name="prod">
+    <contextParameter comment="Business Day of process. Optional, defaults to current day." name="RunDate" prompt="RunDate?" promptNeeded="false" type="id_Date" value=""/>
+    <contextParameter comment="" name="nms_db_Schema" prompt="nms_db_Schema?" promptNeeded="false" type="id_String" value="public"/>
+    <contextParameter comment="" name="nms_db_Port" prompt="nms_db_Port?" promptNeeded="false" type="id_String" value="5433"/>
+    <contextParameter comment="" name="nms_db_Login" prompt="nms_db_Login?" promptNeeded="false" type="id_String" value="pega@iway"/>
+    <contextParameter comment="" name="nms_db_Server" prompt="nms_db_Server?" promptNeeded="false" type="id_String" value="ec2-18-221-25-155.us-east-2.compute.amazonaws.com"/>
+    <contextParameter comment="" name="nms_db_Database" prompt="nms_db_Database?" promptNeeded="false" type="id_String" value="NMS1"/>
+    <contextParameter comment="" name="nms_db_Password" prompt="nms_db_Password?" promptNeeded="false" type="id_Password" value="AgfnKm4E3u0="/>
+    <contextParameter comment="" name="feedIncomingDir" prompt="feedIncomingDir?" promptNeeded="false" type="id_String" value="/data/talend/feeds/incoming"/>
+    <contextParameter comment="" name="feedFileName" prompt="feedFileName?" promptNeeded="false" type="id_String" value="new_sample.csv"/>
+    <contextParameter comment="" name="feedArchiveDir" prompt="feedArchiveDir?" promptNeeded="false" type="id_String" value="/data/talend/feeds/archive"/>
+    <contextParameter comment="" name="feedTableName" prompt="feedTableName?" promptNeeded="false" type="id_String" value="tmp_feed"/>
+  </context>
+  <parameters>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="0" show="false"/>
+    <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_VERSION" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_KERBEROS" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_PRINCIPAL" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_USERNAME" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_GROUP" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_USE_KEYTAB" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_KT_PRINCIPAL" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_KEY_TAB" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_OO_KERBEROS" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_END_POINT" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_JOB_TRACKER_ENDPOINT" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_END_POINT" value="" show="false"/>
+    <elementParameter field="CHECK" name="IMPLICITCONTEXT_USE_PROJECT_SETTINGS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="STATANDLOG_USE_PROJECT_SETTINGS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="MULTI_THREAD_EXECATION" value="false"/>
+    <elementParameter field="CHECK" name="IMPLICIT_TCONTEXTLOAD" value="false"/>
+    <elementParameter field="RADIO" name="FROM_FILE_FLAG_IMPLICIT_CONTEXT" value="false" show="false"/>
+    <elementParameter field="RADIO" name="FROM_DATABASE_FLAG_IMPLICIT_CONTEXT" value="false" show="false"/>
+    <elementParameter field="FILE" name="IMPLICIT_TCONTEXTLOAD_FILE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:PROPERTY_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:REPOSITORY_PROPERTY_TYPE" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE_IMPLICIT_CONTEXT" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION_IMPLICIT_CONTEXT" value="" show="false"/>
+    <elementParameter field="TEXT" name="URL_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR_IMPLICIT_CONTEXT" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="HOST_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning" show="false"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ON_STATCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_LOGCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_METERCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_CONSOLE_FLAG" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ON_FILES_FLAG" value="false" show="false"/>
+    <elementParameter field="DIRECTORY" name="FILE_PATH" value="&quot;/Users/yu/OneDrive/projects/ETL/.metadata&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_STATS" value="&quot;stats_file.txt&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_LOGS" value="&quot;logs_file.txt&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_METTER" value="&quot;meter_file.txt&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="ISO-8859-15" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" show="false"/>
+    <elementParameter field="CHECK" name="ON_DATABASE_FLAG" value="false" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE" value="tJDBCOutput" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="ORACLE_11" show="false"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_METER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_RUNTIME_ERRORS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_ERRORS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_WARNING" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_REALTIME_STATS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_HEADERID" value="" show="false"/>
+    <elementParameter field="CHECK" name="HEADER_ENABLED" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_LIBRARY" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_CODE" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_IMPORT" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_FOOTERID" value="" show="false"/>
+    <elementParameter field="CHECK" name="FOOTER_ENABLED" value="false" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_LIBRARY" value="" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_CODE" value="" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_IMPORT" value="" show="false"/>
+    <routinesParameter id="_RlYhYBiLEeeXh-meVl446A" name="DataOperation"/>
+    <routinesParameter id="_RlsDYBiLEeeXh-meVl446A" name="Mathematical"/>
+    <routinesParameter id="_RlufoBiLEeeXh-meVl446A" name="Numeric"/>
+    <routinesParameter id="_RlvtwBiLEeeXh-meVl446A" name="Relational"/>
+    <routinesParameter id="_Rlxi8BiLEeeXh-meVl446A" name="StringHandling"/>
+    <routinesParameter id="_RlyxEBiLEeeXh-meVl446A" name="TalendDataGenerator"/>
+    <routinesParameter id="_Rl0mQBiLEeeXh-meVl446A" name="TalendDate"/>
+    <routinesParameter id="_iZqeMHOhEeevIoB3gigWeQ" name="TalendStringUtil"/>
+    <routinesParameter id="_Rl2bcBiLEeeXh-meVl446A" name="TalendString"/>
+    <routinesParameter id="_eL60gMbQEeauWL9nR4x-3w" name="StringUtils"/>
+    <routinesParameter id="_gpFq4LymEeabFoCP2bAnNA" name="FeedFile"/>
+    <routinesParameter id="_Bg8TUMYLEeasgvcK6CAnuQ" name="Logging"/>
+    <routinesParameter id="_As7b4NHREeaP-t_XFD-_Hw" name="DateUtils"/>
+  </parameters>
+  <node componentName="tLogCatcher" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogCatcher_1" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_JAVA_EXCEPTION" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_TDIE" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_TWARN" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_TACTIONFAILURE" value="true" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="LogCatcher_AllLogs"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogCatcher_1">
+      <column key="false" length="0" name="moment" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="0" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="20" name="pid" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="20" name="root_pid" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="20" name="father_pid" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="50" name="project" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="255" name="job" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="50" name="context" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="3" name="priority" nullable="true" precision="0" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="255" name="type" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="255" name="origin" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column key="false" length="255" name="message" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="3" name="code" nullable="true" precision="0" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="Logging.logMessage(input_row.moment, jobName, input_row.priority, input_row.origin, input_row.message);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Java_LogRowMessage"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_1"/>
+  </node>
+  <node componentName="tPrejob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPrejob_1" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Pre_StartJob"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_1" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="Logging.initializeLogging(jobName);&#xA;&#xA;// Provide Friendly Names for all the components. Mostly, the tWarn Components&#xA;Logging.componentName(jobName, &quot;tWarn_1&quot;, &quot;Log_Load_Feed&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_2&quot;, &quot;Log_No_Feed_File&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_3&quot;, &quot;Log_Process_Data&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_4&quot;, &quot;Log_Process_Data&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_5&quot;, &quot;Log_Process_Data&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_6&quot;, &quot;Log_Process_Data&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_7&quot;, &quot;Log_Process_Data&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_8&quot;, &quot;Log_Process_Data&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_10&quot;, &quot;Log_Process_Data&quot;);&#xA;Logging.componentName(jobName, &quot;tWarn_11&quot;, &quot;Log_Process_Data&quot;);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Java_InitLogging"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_1"/>
+  </node>
+  <node componentName="tSetGlobalVar" componentVersion="0.101" offsetLabelX="1" offsetLabelY="-1" posX="416" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSetGlobalVar_1" show="false"/>
+    <elementParameter field="TABLE" name="VARIABLES">
+      <elementValue elementRef="KEY" value="&quot;RUN_DATE&quot;"/>
+      <elementValue elementRef="VALUE" value="DateUtils.runDate(context.RunDate)"/>
+      <elementValue elementRef="KEY" value="&quot;DATE_STAMP&quot;"/>
+      <elementValue elementRef="VALUE" value="TalendDate.TO_CHAR((Date)globalMap.get(&quot;RUN_DATE&quot;), &quot;yyyyMMdd&quot;)"/>
+      <elementValue elementRef="KEY" value="&quot;FILE_MASK&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;Zipcar_*&quot; + globalMap.get(&quot;DATE_STAMP&quot;) + &quot;*.gpg,Zipcar_*&quot; + globalMap.get(&quot;DATE_STAMP&quot;) + &quot;*.txt&quot;"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="Set_JobTracking"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tSetGlobalVar_1"/>
+  </node>
+  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostjob_1" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Post_EndJob"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tPostgresqlConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="608" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlConnection_1" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_lLtHENHGEeaJE97Q8wxjVA" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="V9_X"/>
+    <elementParameter field="TEXT" name="HOST" value="context.nms_db_Server"/>
+    <elementParameter field="TEXT" name="TYPE" value="POSTGRESQL" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nms_db_Port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nms_db_Database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nms_db_Schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.nms_db_Login"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueFEfMnmqsXdRaMkOmuMsjI"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_SHARED_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="SHARED_CONNECTION_NAME" value="" show="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="AUTO_COMMIT" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tPostgresqlClose" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlClose_1" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tPostgresqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="832">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="PRIOR_TO_V9" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xA;&quot;&#xD;&#xA;begin;&#xA;--drop table if exists first_name_with_score;&#xD;&#xA;create temp table first_name_with_score (&#xD;&#xA;&#x9;first_name varchar(60),&#xD;&#xA;&#x9;student_id int4,&#xD;&#xA;&#x9;score&#x9;int4&#xD;&#xA;);&#xD;&#xA;insert into first_name_with_score&#xD;&#xA;&#x9;select&#xD;&#xA;&#x9;&#x9;lower(first_name) as first_name, &#xD;&#xA;&#x9;&#x9;student_id,&#xD;&#xA;&#x9;&#x9;wt.weight as score&#xD;&#xA;&#x9;from {{dbSchema}}.student stu&#xD;&#xA;&#x9;join {{dbSchema}}.matching_fields_weight_rf wt&#xD;&#xA;&#x9;on wt.matching_field = 'first_name'&#xD;&#xA;&#x9;group by first_name, student_id, score&#xD;&#xA;;&#xD;&#xA;create index idx_first_name on first_name_with_score(first_name);&#xD;&#xA;--select * from first_name_with_score;&#xD;&#xA;&#xD;&#xA;--drop table if exists last_name_with_score;&#xD;&#xA;create temp table last_name_with_score (&#xD;&#xA;&#x9;last_name varchar(60),&#xD;&#xA;&#x9;student_id int4,&#xD;&#xA;&#x9;score&#x9;int4&#xD;&#xA;);&#xD;&#xA;insert into last_name_with_score&#xD;&#xA;&#x9;select &#xD;&#xA;&#x9;&#x9;lower(last_name) as last_name, &#xD;&#xA;&#x9;&#x9;student_id,&#xD;&#xA;&#x9;&#x9;wt.weight as score&#xD;&#xA;&#x9;from {{dbSchema}}.student stu&#xD;&#xA;&#x9;join {{dbSchema}}.matching_fields_weight_rf wt&#xD;&#xA;&#x9;on wt.matching_field = 'last_name'&#xD;&#xA;&#x9;group by last_name, student_id, score&#xD;&#xA;;&#xD;&#xA;create index idx_last_name on last_name_with_score(last_name);&#xD;&#xA;--select * from last_name_with_score;&#xD;&#xA;&#xD;&#xA;--drop table if exists middle_name_with_score;&#xD;&#xA;create temp table middle_name_with_score (&#xD;&#xA;&#x9;middle_name varchar(60),&#xD;&#xA;&#x9;student_id int4,&#xD;&#xA;&#x9;score&#x9;int4&#xD;&#xA;);&#xD;&#xA;insert into middle_name_with_score&#xD;&#xA;&#x9;select&#xD;&#xA;&#x9;&#x9;lower(middle_name) as middle_name, &#xD;&#xA;&#x9;&#x9;student_id,&#xD;&#xA;&#x9;&#x9;wt.weight as score&#xD;&#xA;&#x9;from {{dbSchema}}.student stu&#xD;&#xA;&#x9;join {{dbSchema}}.matching_fields_weight_rf wt&#xD;&#xA;&#x9;on wt.matching_field = 'middle_name'&#xD;&#xA;&#x9;group by middle_name, student_id, score&#xD;&#xA;;&#xD;&#xA;create index idx_middle_name on middle_name_with_score(middle_name);&#xD;&#xA;--select * from middle_name_with_score;&#xD;&#xA;&#xD;&#xA;--drop table if exists addressline1_with_score;&#xD;&#xA;create temp table addressline1_with_score (&#xD;&#xA;&#x9;addressline1 varchar(70),&#xD;&#xA;&#x9;student_id int4,&#xD;&#xA;&#x9;score&#x9;int4&#xD;&#xA;);&#xD;&#xA;insert into addressline1_with_score&#xD;&#xA;&#x9;select &#xD;&#xA;&#x9;&#x9;lower(addressline1) as addressline1, &#xD;&#xA;&#x9;&#x9;student_id,&#xD;&#xA;&#x9;&#x9;wt.weight as score&#xD;&#xA;&#x9;from {{dbSchema}}.student_address sta&#xD;&#xA;&#x9;join {{dbSchema}}.matching_fields_weight_rf wt&#xD;&#xA;&#x9;on wt.matching_field = 'address_line1'&#xD;&#xA;&#x9;group by addressline1, student_id, score&#xD;&#xA;;&#xD;&#xA;create index idx_addressline1 on addressline1_with_score(addressline1);&#xD;&#xA;--select * from addressline1_with_score;&#xD;&#xA;&#xD;&#xA;--drop table if exists dob_with_score;&#xD;&#xA;create temp table dob_with_score (&#xD;&#xA;&#x9;date_of_birth timestamp,&#xD;&#xA;&#x9;student_id int4,&#xD;&#xA;&#x9;score&#x9;int4&#xD;&#xA;);&#xD;&#xA;insert into dob_with_score&#xD;&#xA;&#x9;select &#xD;&#xA;&#x9;&#x9;date_of_birth, &#xD;&#xA;&#x9;&#x9;student_id,&#xD;&#xA;&#x9;&#x9;wt.weight as score&#xD;&#xA;&#x9;from {{dbSchema}}.student stu&#xD;&#xA;&#x9;join {{dbSchema}}.matching_fields_weight_rf wt&#xD;&#xA;&#x9;on wt.matching_field = 'date_of_birth'&#xD;&#xA;&#x9;group by date_of_birth, student_id, score&#xD;&#xA;;&#xD;&#xA;create index idx_dob on dob_with_score(date_of_birth);&#xD;&#xA;--select * from dob_with_score;&#xD;&#xA;&#xD;&#xA;--drop table if exists attending_hs_code_with_score;&#xD;&#xA;create temp table attending_hs_code_with_score (&#xD;&#xA;&#x9;attendinghighschool_code varchar(10),&#xD;&#xA;&#x9;student_id int4,&#xD;&#xA;&#x9;score&#x9;int4&#xD;&#xA;);&#xD;&#xA;insert into attending_hs_code_with_score&#xD;&#xA;&#x9;select &#xD;&#xA;&#x9;&#x9;attendinghighschool_code, &#xD;&#xA;&#x9;&#x9;student_id,&#xD;&#xA;&#x9;&#x9;wt.weight as score&#xD;&#xA;&#x9;from {{dbSchema}}.student stu&#xD;&#xA;&#x9;join {{dbSchema}}.matching_fields_weight_rf wt&#xD;&#xA;&#x9;on wt.matching_field = 'attending_hs_code'&#xD;&#xA;&#x9;group by attendinghighschool_code, student_id, score&#xD;&#xA;;&#xD;&#xA;create index idx_attending_hs_code on attending_hs_code_with_score(attendinghighschool_code);&#xD;&#xA;--select * from attending_hs_code_with_score;&#xD;&#xA;&#xD;&#xA;--drop table if exists potential_match_weight;&#xD;&#xA;create temp table potential_match_weight as&#xD;&#xA;&#x9;select weight from {{dbSchema}}.matching_fields_weight_rf where matching_field = 'pot_matching_score'&#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;--drop table if exists exact_match_weight;&#xD;&#xA;create temp table exact_match_weight as &#xD;&#xA;&#x9;select weight from {{dbSchema}}.matching_fields_weight_rf where matching_field = 'exact_matching_score'&#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;commit;&#xA;&quot;&#xD;&#xA;,&#xD;&#xA;&quot;dbSchema&quot;, StringHandling.DQUOTE(context.nms_db_Schema)&#xA;);"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Create_Temp_Tables"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlRow_1"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tPostgresqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="832">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_2" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="PRIOR_TO_V9" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xA;&quot;&#xD;&#xA;begin;&#xD;&#xA;-- calculate matching scores&#xD;&#xA;--drop table if exists feed_with_matching_scores;&#xD;&#xA;create temp table feed_with_matching_scores as&#xD;&#xA;select first_name, last_name, middle_name, date_of_birth, addressline1, attendinghighschool_code, student_id, score from (&#xD;&#xA;&#x9;select ft.first_name, ft.last_name, ft.middle_name, ft.date_of_birth, ft.addressline1,&#xD;&#xA;&#x9;&#x9;case when ft.sourcetypecode = 'PN' then ft.attendinghighschool_code&#xD;&#xA;&#x9;&#x9;&#x9;when ft.sourcetypecode = 'SA' then ft.attendinghighschool_code_sat&#xD;&#xA;&#x9;&#x9;&#x9;else null&#xD;&#xA;&#x9;&#x9;end as attendinghighschool_code,&#xD;&#xA;&#x9;&#x9;t1.student_id, &#xD;&#xA;&#x9;&#x9;(coalesce(t1.score, 0) + coalesce(t2.score, 0) + coalesce(t3.score, 0) + coalesce(t4.score, 0) + coalesce(t5.score, 0) + coalesce(t6.score, 0)) as score&#xD;&#xA;&#x9;from {{dbSchema}}.{{feedTableName}} ft&#xD;&#xA;&#x9;left join lateral (&#xD;&#xA;&#x9;&#x9;select student_id, score&#xD;&#xA;&#x9;&#x9;from first_name_with_score s&#xD;&#xA;&#x9;&#x9;where coalesce(lower(ft.first_name), '') = coalesce(s.first_name, '')&#xD;&#xA;&#x9;) t1 on true&#xD;&#xA;&#x9;left join lateral (&#xD;&#xA;&#x9;&#x9;select student_id, score&#xD;&#xA;&#x9;&#x9;from last_name_with_score s&#xD;&#xA;&#x9;&#x9;where coalesce(lower(ft.last_name), '') = coalesce(s.last_name, '')&#xD;&#xA;&#x9;&#x9;and student_id = t1.student_id&#xD;&#xA;&#x9;) t2 on true&#xD;&#xA;&#x9;left join lateral (&#xD;&#xA;&#x9;&#x9;select student_id, score&#xD;&#xA;&#x9;&#x9;from middle_name_with_score s&#xD;&#xA;&#x9;&#x9;where coalesce(lower(ft.middle_name), '') = coalesce(s.middle_name, '')&#xD;&#xA;&#x9;&#x9;and student_id = t1.student_id&#xD;&#xA;&#x9;) t3 on true&#xD;&#xA;&#x9;left join lateral (&#xD;&#xA;&#x9;&#x9;select student_id, score&#xD;&#xA;&#x9;&#x9;from dob_with_score s&#xD;&#xA;&#x9;&#x9;where coalesce(ft.date_of_birth, current_date) = coalesce(s.date_of_birth, current_date)&#xD;&#xA;&#x9;&#x9;and student_id = t1.student_id&#xD;&#xA;&#x9;) t4 on true&#xD;&#xA;&#x9;left join lateral (&#xD;&#xA;&#x9;&#x9;select student_id, score&#xD;&#xA;&#x9;&#x9;from addressline1_with_score s&#xD;&#xA;&#x9;&#x9;where coalesce(lower(ft.addressline1), '') = coalesce(s.addressline1, '')&#xD;&#xA;&#x9;&#x9;and student_id = t1.student_id&#xD;&#xA;&#x9;) t5 on true&#xD;&#xA;&#x9;left join lateral (&#xD;&#xA;&#x9;&#x9;select student_id, score&#xD;&#xA;&#x9;&#x9;from attending_hs_code_with_score s&#xD;&#xA;&#x9;&#x9;where (&#xD;&#xA;&#x9;&#x9;&#x9;case when ft.sourcetypecode = 'PN' then (coalesce(ft.attendinghighschool_code, '') = coalesce(s.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;&#x9;when ft.sourcetypecode = 'SA' then &#x9;(coalesce(ft.attendinghighschool_code_sat, '') = coalesce(s.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;&#x9;else true&#xD;&#xA;&#x9;&#x9;&#x9;end&#xD;&#xA;&#x9;&#x9;)&#xD;&#xA;&#x9;&#x9;and student_id = t1.student_id&#xD;&#xA;&#x9;) t6 on true&#xD;&#xA;&#x9;where (&#xD;&#xA;&#x9;&#x9;t1.student_id is not null&#xD;&#xA;&#x9;&#x9;or t2.student_id is not null&#xD;&#xA;&#x9;&#x9;or t3.student_id is not null&#xD;&#xA;&#x9;&#x9;or t4.student_id is not null&#xD;&#xA;&#x9;&#x9;or t5.student_id is not null&#xD;&#xA;&#x9;&#x9;or t6.student_id is not null&#xD;&#xA;&#x9;)&#xD;&#xA;) tt &#xD;&#xA;join potential_match_weight wt on true&#xD;&#xA;where score >= wt.weight&#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;-- exactly matching records&#xD;&#xA;--drop table if exists tmp_feed_exact_match;&#xD;&#xA;create temp table tmp_feed_exact_match as&#xD;&#xA;select ft.*, fms.student_id, fms.score&#xD;&#xA;from {{dbSchema}}.{{feedTableName}} ft&#xD;&#xA;join feed_with_matching_scores fms&#xD;&#xA;on coalesce(ft.first_name, '') = coalesce(fms.first_name, '')&#xD;&#xA;and coalesce(ft.last_name, '') = coalesce(fms.last_name, '')&#xD;&#xA;and coalesce(ft.middle_name, '') = coalesce(fms.middle_name, '')&#xD;&#xA;and coalesce(ft.date_of_birth, current_date) = coalesce(fms.date_of_birth, current_date)&#xD;&#xA;and coalesce(ft.addressline1, '') = coalesce(fms.addressline1, '')&#xD;&#xA;and (&#xD;&#xA;&#x9;case when ft.sourcetypecode = 'PN' then (coalesce(ft.attendinghighschool_code, '') = coalesce(fms.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;when ft.sourcetypecode = 'SA' then &#x9;(coalesce(ft.attendinghighschool_code_sat, '') = coalesce(fms.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;else true&#xD;&#xA;&#x9;end&#xD;&#xA;)&#xD;&#xA;join exact_match_weight wt on true&#xD;&#xA;where score >= wt.weight&#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;-- potential matching records&#xD;&#xA;--drop sequence if exists new_fallout_seq;&#xD;&#xA;create temp sequence new_fallout_seq;&#xD;&#xA;--drop table if exists tmp_feed_potential_match;&#xD;&#xA;create temp table tmp_feed_potential_match as&#xD;&#xA;select nextval('new_fallout_seq') - 1 + {{dbSchema}}.next_fallout_id() as fallout_id,&#xD;&#xA;&#x9;ft.*, fms.student_id, fms.score&#xD;&#xA;from {{dbSchema}}.{{feedTableName}} ft&#xD;&#xA;join feed_with_matching_scores fms&#xD;&#xA;on coalesce(ft.first_name, '') = coalesce(fms.first_name, '')&#xD;&#xA;and coalesce(ft.last_name, '') = coalesce(fms.last_name, '')&#xD;&#xA;and coalesce(ft.middle_name, '') = coalesce(fms.middle_name, '')&#xD;&#xA;and coalesce(ft.date_of_birth, current_date) = coalesce(fms.date_of_birth, current_date)&#xD;&#xA;and coalesce(ft.addressline1, '') = coalesce(fms.addressline1, '')&#xD;&#xA;and (&#xD;&#xA;&#x9;case when ft.sourcetypecode = 'PN' then (coalesce(ft.attendinghighschool_code, '') = coalesce(fms.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;when ft.sourcetypecode = 'SA' then &#x9;(coalesce(ft.attendinghighschool_code_sat, '') = coalesce(fms.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;else true&#xD;&#xA;&#x9;end&#xD;&#xA;)&#xD;&#xA;join exact_match_weight wt_exact on true&#xD;&#xA;join potential_match_weight wt_pot on true&#xD;&#xA;where (score >= wt_pot.weight and score &lt; wt_exact.weight)&#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;--drop sequence if exists new_stduent_seq;&#xD;&#xA;create temp sequence new_stduent_seq;&#xD;&#xA;-- non-matching records&#xD;&#xA;--drop table if exists tmp_feed_no_match;&#xD;&#xA;create temp table tmp_feed_no_match as&#xD;&#xA;select nextval('new_stduent_seq') - 1 + {{dbSchema}}.next_student_id() as student_id, ft.*&#xD;&#xA;from {{dbSchema}}.{{feedTableName}} ft&#xD;&#xA;left join feed_with_matching_scores fms&#xD;&#xA;on coalesce(ft.first_name, '') = coalesce(fms.first_name, '')&#xD;&#xA;and coalesce(ft.last_name, '') = coalesce(fms.last_name, '')&#xD;&#xA;and coalesce(ft.middle_name, '') = coalesce(fms.middle_name, '')&#xD;&#xA;and coalesce(ft.date_of_birth, current_date) = coalesce(fms.date_of_birth, current_date)&#xD;&#xA;and coalesce(ft.addressline1, '') = coalesce(fms.addressline1, '')&#xD;&#xA;and (&#xD;&#xA;&#x9;case when ft.sourcetypecode = 'PN' then (coalesce(ft.attendinghighschool_code, '') = coalesce(fms.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;when ft.sourcetypecode = 'SA' then &#x9;(coalesce(ft.attendinghighschool_code_sat, '') = coalesce(fms.attendinghighschool_code, ''))&#xD;&#xA;&#x9;&#x9;else true&#xD;&#xA;&#x9;end&#xD;&#xA;)&#xD;&#xA;where fms.first_name is null &#xD;&#xA;and fms.last_name is null&#xD;&#xA;and fms.middle_name is null&#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;commit;&#xD;&#xA;&quot;,&#xD;&#xA;&quot;dbSchema&quot;, StringHandling.DQUOTE(context.nms_db_Schema),&#xD;&#xA;&quot;feedTableName&quot;, context.feedTableName&#xA;);"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Calc_Matching_Scores"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlRow_2"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="448">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_2" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value=""/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_2"/>
+  </node>
+  <node componentName="tFileUnarchive" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="576" posY="448">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileUnarchive_1" show="false"/>
+    <elementParameter field="FILE" name="ZIPFILE" value="context.feedIncomingDir + &quot;/&quot; + context.feedFileName"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="context.feedIncomingDir"/>
+    <elementParameter field="CHECK" name="ROOTNAME" value="false"/>
+    <elementParameter field="CHECK" name="INTEGRITY" value="false"/>
+    <elementParameter field="CHECK" name="EXTRACTPATH" value="false"/>
+    <elementParameter field="CHECK" name="CHECKPASSWORD" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="DECRYPT_METHOD" value="ZIP4J_DECRYPT" show="false"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="PRINTOUT" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tPostgresqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="576">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_3" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="PRIOR_TO_V9" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xD;&#xA;&quot;&#xD;&#xA;BEGIN;&#xD;&#xA;-- truncate feed table first&#xD;&#xA;TRUNCATE  {{dbSchema}}.{{tableName}};&#xD;&#xA;COMMIT;&#xD;&#xA;&#xD;&#xA;BEGIN;&#xD;&#xA;COPY  {{dbSchema}}.{{tableName}}&#xD;&#xA;FROM '{{feedFile}}' &#xD;&#xA;WITH (&#xD;&#xA;&#x9;DELIMITER '|' ,&#xD;&#xA;&#x9;FORMAT csv,&#xD;&#xA;&#x9;HEADER true&#xD;&#xA;)&#xD;&#xA;;&#xD;&#xA;COMMIT;&#xD;&#xA;&quot;,&#xD;&#xA;&quot;dbSchema&quot;, StringHandling.DQUOTE(context.nms_db_Schema),&#xD;&#xA;&quot;tableName&quot;, context.feedTableName,&#xD;&#xA;&quot;feedFile&quot;, context.feedIncomingDir + &quot;/&quot; + StringUtils.stripFileExtension(context.feedFileName, &quot;.zip&quot;)&#xD;&#xA;)"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Bulk_Load_Feed"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlRow_3"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFileExist" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="448">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileExist_1" show="false"/>
+    <elementParameter field="FILE" name="FILE_NAME" value="context.feedIncomingDir + &quot;/&quot; + context.feedFileName"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="576">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_1" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Done loading feed, creating temp tables...&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="3"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_1"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="448">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_2" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;No feed file found.&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="4"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_2"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="576">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_3" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Start loading feed...&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="3"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_3"/>
+  </node>
+  <node componentName="tPostgresqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="960">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_4" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="PRIOR_TO_V9" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xA;&quot;&#xD;&#xA;begin;&#xA;-- no match - insert new students&#xD;&#xA;INSERT INTO {{dbSchema}}.student (&#xD;&#xA;    student_id,&#xD;&#xA;&#x9;last_name,&#xD;&#xA;    first_name,&#xD;&#xA;    middle_name,&#xD;&#xA;    date_of_birth,&#xD;&#xA;    gender,&#xD;&#xA;    sourcetype_code,&#xD;&#xA;    active_ind,&#xD;&#xA;    inserted_by,&#xD;&#xA;    inserted_date,&#xD;&#xA;    lastmodified_by,&#xD;&#xA;    lastmodified_date,&#xD;&#xA;    testyear,&#xD;&#xA;    email_address,&#xD;&#xA;    meritlevelstatuscode,&#xD;&#xA;&#x9;attendinghighschool_code&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;    student_id,&#xD;&#xA;&#x9;coalesce(last_name, '') as last_name,&#xD;&#xA;    coalesce(first_name, '') as first_name,&#xD;&#xA;    coalesce(middle_name, '') as middle_name,&#xD;&#xA;    date_of_birth,&#xD;&#xA;    case when (gender is null or trim(gender) = '') then 'U' else gender end as gender,&#xD;&#xA;    sourcetypecode as sourcetype_code,&#xD;&#xA;    1 as active_ind,&#xD;&#xA;&#x9;'ETL Matching Insert 6M' as inserted_by,&#xD;&#xA;&#x9;current_timestamp as inserted_date,&#xD;&#xA;&#x9;'ETL Matching insert' as lastmodified_by,&#xD;&#xA;&#x9;current_timestamp as lastmodified_date,&#xD;&#xA;    testyear,&#xD;&#xA;    emailaddress as email_address,&#xD;&#xA;    'PAR' as meritlevelstatuscode,&#xD;&#xA;&#x9;case when sourcetypecode = 'PN' then attendinghighschool_code&#xD;&#xA;&#x9;&#x9;when sourcetypecode = 'SA' then attendinghighschool_code_sat&#xD;&#xA;&#x9;&#x9;else null&#xD;&#xA;&#x9;end as attendinghighschool_code&#xD;&#xA;from tmp_feed_no_match;&#xD;&#xA;&#xD;&#xA;-- no match - insert new student addresses&#xD;&#xA;INSERT INTO {{dbSchema}}.student_address (&#xD;&#xA;&#x9;studentaddress_id,&#xD;&#xA;&#x9;student_id,&#xD;&#xA;&#x9;addressline1,&#xD;&#xA;&#x9;addressline2,&#xD;&#xA;&#x9;addressline_extra,&#xD;&#xA;&#x9;city,&#xD;&#xA;&#x9;province,&#xD;&#xA;&#x9;state,&#xD;&#xA;&#x9;zip,&#xD;&#xA;&#x9;country,&#xD;&#xA;&#x9;active_ind,&#xD;&#xA;&#x9;inserted_by,&#xD;&#xA;&#x9;inserted_date,&#xD;&#xA;&#x9;lastmodified_by,&#xD;&#xA;&#x9;lastmodified_date&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;{{dbSchema}}.next_student_address_id() as studentaddress_id,  &#xD;&#xA;&#x9;student_id,&#xD;&#xA;&#x9;addressline1,&#xD;&#xA;&#x9;addressline2,&#xD;&#xA;&#x9;addressline_extra,&#xD;&#xA;&#x9;city,&#xD;&#xA;&#x9;province,&#xD;&#xA;&#x9;state,&#xD;&#xA;&#x9;zip,&#xD;&#xA;&#x9;country,&#xD;&#xA;&#x9;1 as active_ind,&#xD;&#xA;&#x9;'ETL Matching Insert 6M' as inserted_by,&#xD;&#xA;&#x9;current_timestamp as inserted_date,&#xD;&#xA;&#x9;'ETL Matching insert' as lastmodified_by,&#xD;&#xA;&#x9;current_timestamp as lastmodified_date&#xD;&#xA;from tmp_feed_no_match;&#xD;&#xA;&#xD;&#xA;-- no match - insert new student detail&#xD;&#xA;INSERT INTO {{dbSchema}}.studentdetail (&#xD;&#xA;&#x9;studentdetail_id,&#xD;&#xA;&#x9;student_id,&#xD;&#xA;&#x9;adminhighschool_code,&#xD;&#xA;&#x9;attendinghighschool_code,&#xD;&#xA;&#x9;currenthighschool_code,&#xD;&#xA;&#x9;verbal_score,&#xD;&#xA;&#x9;math_score,&#xD;&#xA;&#x9;writing_score,&#xD;&#xA;&#x9;selection_index,&#xD;&#xA;&#x9;inserted_by,&#xD;&#xA;&#x9;inserted_date,&#xD;&#xA;&#x9;last_modifiedby,&#xD;&#xA;&#x9;last_modifieddate,&#xD;&#xA;&#x9;testdayformcode,&#xD;&#xA;&#x9;studenteligibility,&#xD;&#xA;&#x9;testeligibility,&#xD;&#xA;&#x9;batchpascode,&#xD;&#xA;&#x9;accesscode,&#xD;&#xA;&#x9;cb_student_id&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;{{dbSchema}}.next_student_detail_id() as studentdetail_id,&#xD;&#xA;&#x9;student_id,&#xD;&#xA;&#x9;adminhighschool_code,&#xD;&#xA;&#x9;attendinghighschool_code,&#xD;&#xA;&#x9;currenthighschool_code,&#xD;&#xA;&#x9;verbal_score::int4,&#xD;&#xA;&#x9;math_score::int4,&#xD;&#xA;&#x9;writing_score::int4,&#xD;&#xA;&#x9;selection_index::int4,&#xD;&#xA;&#x9;'ETL Matching Insert 6M' as inserted_by,&#xD;&#xA;&#x9;current_timestamp as inserted_date,&#xD;&#xA;&#x9;'ETL Matching insert' as last_modifiedby,&#xD;&#xA;&#x9;current_timestamp as last_modifieddate,&#xD;&#xA;&#x9;testdayformcode,&#xD;&#xA;&#x9;studenteligibility::int4,&#xD;&#xA;&#x9;testeligibility::int4,&#xD;&#xA;&#x9;batchpascode,&#xD;&#xA;&#x9;accesscode,&#xD;&#xA;&#x9;cb_student_id&#x9;&#xD;&#xA;from tmp_feed_no_match &#xD;&#xA;where sourcetypecode = 'PN';&#xD;&#xA;&#xD;&#xA;-- no match - insert new SAT scores&#xD;&#xA;INSERT INTO {{dbSchema}}.sat (&#xD;&#xA;&#x9;scoreid, &#xD;&#xA;&#x9;studentid, &#xD;&#xA;&#x9;totalscore, &#xD;&#xA;&#x9;testdate, &#xD;&#xA;&#x9;mathscore, &#xD;&#xA;&#x9;readingwritingscore,&#xD;&#xA;&#x9;essayscore,&#xD;&#xA;&#x9;insertedby, &#xD;&#xA;&#x9;inserteddate, &#xD;&#xA;&#x9;attendinghighschool_code&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;{{dbSchema}}.next_sat_score_id(student_id::int4) as scoreid,&#xD;&#xA;&#x9;student_id as studentid, &#xD;&#xA;&#x9;totalscore, &#xD;&#xA;&#x9;testdate, &#xD;&#xA;&#x9;mathscore, &#xD;&#xA;&#x9;readingwritingscore,&#xD;&#xA;&#x9;essayscore,&#xD;&#xA;&#x9;'ETL Matching Insert' as insertedby,&#xD;&#xA;&#x9;current_timestamp as inserteddate, &#xD;&#xA;&#x9;attendinghighschool_code_sat as attendinghighschool_code&#xD;&#xA;from tmp_feed_no_match &#xD;&#xA;where sourcetypecode = 'SA';&#xD;&#xA;&#xD;&#xA;-- no match - insert new student alternate entry&#xD;&#xA;INSERT INTO {{dbSchema}}.alternateentry (&#xD;&#xA;&#x9;studentaeid, &#xD;&#xA;&#x9;studentid, &#xD;&#xA;&#x9;attendinghighschoolcode,&#xD;&#xA;&#x9;insertedby, &#xD;&#xA;&#x9;inserteddate, &#xD;&#xA;&#x9;modifiedby, &#xD;&#xA;&#x9;modifieddate,&#xD;&#xA;&#x9;aereasoncode,&#xD;&#xA;&#x9;testyear&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;{{dbSchema}}.next_student_ae_id() as studentaeid,&#xD;&#xA;&#x9;student_id as studentid, &#xD;&#xA;&#x9;coalesce(attendinghighschool_code, '000000') as attendinghighschoolcode,&#xD;&#xA;&#x9;'ETL Matching Insert 6M' as insertedby,&#xD;&#xA;&#x9;current_timestamp as inserteddate,&#xD;&#xA;&#x9;'ETL Matching insert' as modifiedby,&#xD;&#xA;&#x9;current_timestamp as modifieddate,&#xD;&#xA;&#x9;'01' as aereasoncode,&#xD;&#xA;&#x9;testyear&#xD;&#xA;from tmp_feed_no_match &#xD;&#xA;where sourcetypecode = 'AE';&#xD;&#xA;&#xD;&#xA;commit;&#xA;&quot;&#xD;&#xA;,&#xD;&#xA;&quot;dbSchema&quot;, StringHandling.DQUOTE(context.nms_db_Schema)&#xA;);"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Update_DB_No_Matches"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlRow_4"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tPostgresqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="960">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_5" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="PRIOR_TO_V9" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xA;&quot;&#xD;&#xA;begin;&#xA;-- exact matches - insert new SAT scores&#xD;&#xA;INSERT INTO {{dbSchema}}.sat (&#xD;&#xA;&#x9;scoreid, &#xD;&#xA;&#x9;studentid, &#xD;&#xA;&#x9;totalscore, &#xD;&#xA;&#x9;testdate, &#xD;&#xA;&#x9;mathscore, &#xD;&#xA;&#x9;readingwritingscore,&#xD;&#xA;&#x9;essayscore,&#xD;&#xA;&#x9;insertedby, &#xD;&#xA;&#x9;inserteddate, &#xD;&#xA;&#x9;attendinghighschool_code&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;{{dbSchema}}.next_sat_score_id(student_id) as scoreid,&#xD;&#xA;&#x9;student_id, &#xD;&#xA;&#x9;totalscore, &#xD;&#xA;&#x9;testdate, &#xD;&#xA;&#x9;mathscore, &#xD;&#xA;&#x9;readingwritingscore,&#xD;&#xA;&#x9;essayscore,&#xD;&#xA;&#x9;'ETL Matching Insert' as insertedby,&#xD;&#xA;&#x9;current_timestamp as inserteddate, &#xD;&#xA;&#x9;attendinghighschool_code_sat as attendinghighschool_code&#xD;&#xA;from tmp_feed_exact_match &#xD;&#xA;where sourcetypecode = 'SA';&#xD;&#xA;&#xD;&#xA;-- exact matches - insert new student alternate entry&#xD;&#xA;INSERT INTO {{dbSchema}}.alternateentry (&#xD;&#xA;&#x9;studentaeid, &#xD;&#xA;&#x9;studentid, &#xD;&#xA;&#x9;attendinghighschoolcode,&#xD;&#xA;&#x9;insertedby, &#xD;&#xA;&#x9;inserteddate, &#xD;&#xA;&#x9;modifiedby, &#xD;&#xA;&#x9;modifieddate,&#xD;&#xA;&#x9;aereasoncode,&#xD;&#xA;&#x9;testyear&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;{{dbSchema}}.next_student_ae_id() as studentaeid,&#xD;&#xA;&#x9;student_id, &#xD;&#xA;&#x9;coalesce(attendinghighschool_code, '000000') as attendinghighschoolcode,&#xD;&#xA;&#x9;'ETL Matching Insert 6M' as insertedby,&#xD;&#xA;&#x9;current_timestamp as inserteddate,&#xD;&#xA;&#x9;'ETL Matching insert' as modifiedby,&#xD;&#xA;&#x9;current_timestamp as modifieddate,&#xD;&#xA;&#x9;'01' as aereasoncode,&#xD;&#xA;&#x9;testyear&#xD;&#xA;from tmp_feed_exact_match &#xD;&#xA;where sourcetypecode = 'AE';&#xD;&#xA;&#xD;&#xA;commit;&#xA;&quot;&#xD;&#xA;,&#xD;&#xA;&quot;dbSchema&quot;, StringHandling.DQUOTE(context.nms_db_Schema)&#xA;);"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Update_DB_Exact_Matches"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlRow_5"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tPostgresqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="960">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_6" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="PRIOR_TO_V9" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xA;&quot;&#xD;&#xA;begin;&#xA;-- potential match - insert feed fallout&#xD;&#xA;INSERT INTO {{dbSchema}}.feed_fallout_records (&#xD;&#xA;&#x9;fallout_id,&#xD;&#xA;&#x9;addressline1,&#xD;&#xA;&#x9;addressline2,&#xD;&#xA;&#x9;addressline_extra,&#xD;&#xA;&#x9;city,&#xD;&#xA;&#x9;province,&#xD;&#xA;&#x9;state,&#xD;&#xA;&#x9;zip,&#xD;&#xA;&#x9;country,&#xD;&#xA;&#x9;last_name,&#xD;&#xA;    first_name,&#xD;&#xA;    middle_name,&#xD;&#xA;    date_of_birth,&#xD;&#xA;    gender,&#xD;&#xA;    sourcetype_code,&#xD;&#xA;&#x9;testyear,&#xD;&#xA;    email_address,&#x9;&#xD;&#xA;&#x9;adminhighschool_code,&#xD;&#xA;    attendinghighschool_code,&#xD;&#xA;    currenthighschool_code,&#xD;&#xA;    verbal_score,&#xD;&#xA;    math_score,&#xD;&#xA;    writing_score,&#xD;&#xA;    selection_index,&#xD;&#xA;&#x9;testdayformcode,&#xD;&#xA;    studenteligibility,&#xD;&#xA;    testeligibility,&#xD;&#xA;    batchpascode,&#xD;&#xA;    accesscode,&#xD;&#xA;    cb_student_id,&#xD;&#xA;&#x9;sattotalscore, &#xD;&#xA;&#x9;sattestdate, &#xD;&#xA;&#x9;satmathscore, &#xD;&#xA;&#x9;satreadingwritingscore,&#xD;&#xA;&#x9;satessayscore,&#xD;&#xA;&#x9;satattendinghighschool_code,&#x9;&#xD;&#xA;    insertedby,&#xD;&#xA;    inserteddate   &#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;fallout_id,&#xD;&#xA;&#x9;addressline1,&#xD;&#xA;&#x9;addressline2,&#xD;&#xA;&#x9;addressline_extra,&#xD;&#xA;&#x9;city,&#xD;&#xA;&#x9;province,&#xD;&#xA;&#x9;state,&#xD;&#xA;&#x9;zip,&#xD;&#xA;&#x9;country,&#xD;&#xA;&#x9;coalesce(last_name, '') as last_name,&#xD;&#xA;    coalesce(first_name, '') as first_name,&#xD;&#xA;    coalesce(middle_name, '') as middle_name,&#xD;&#xA;    date_of_birth,&#xD;&#xA;    gender,&#xD;&#xA;    sourcetypecode,&#xD;&#xA;&#x9;testyear,&#xD;&#xA;    emailaddress,&#x9;&#xD;&#xA;&#x9;adminhighschool_code,&#xD;&#xA;    attendinghighschool_code,&#xD;&#xA;    currenthighschool_code,&#xD;&#xA;    verbal_score::int4,&#xD;&#xA;    math_score::int4,&#xD;&#xA;    writing_score::int4,&#xD;&#xA;    selection_index::int4,&#xD;&#xA;&#x9;testdayformcode,&#xD;&#xA;    studenteligibility::int4,&#xD;&#xA;    testeligibility::int4,&#xD;&#xA;    batchpascode,&#xD;&#xA;    accesscode,&#xD;&#xA;    cb_student_id,&#xD;&#xA;&#x9;totalscore, &#xD;&#xA;&#x9;testdate, &#xD;&#xA;&#x9;mathscore, &#xD;&#xA;&#x9;readingwritingscore,&#xD;&#xA;&#x9;essayscore,&#xD;&#xA;&#x9;attendinghighschool_code_sat,&#x9;&#xD;&#xA;&#x9;'ETL Matching Insert 6M' as insertedby,&#xD;&#xA;&#x9;current_timestamp as inserteddate&#xD;&#xA;from tmp_feed_potential_match;&#xD;&#xA;  &#xD;&#xA;-- potential match - insert potentail match&#xD;&#xA;INSERT INTO {{dbSchema}}.potentialmatch (&#xD;&#xA;&#x9;fallout_id, &#xD;&#xA;&#x9;student_id, &#xD;&#xA;&#x9;insertedby, &#xD;&#xA;&#x9;inserteddate&#xD;&#xA;)&#xD;&#xA;select &#xD;&#xA;&#x9;fallout_id,&#xD;&#xA;&#x9;student_id,&#xD;&#xA;&#x9;'ETL Matching Insert 6M' as insertedby,&#xD;&#xA;&#x9;current_timestamp as inserteddate&#xD;&#xA;from tmp_feed_potential_match;&#xD;&#xA;&#xD;&#xA;commit;&#xA;&quot;&#xD;&#xA;,&#xD;&#xA;&quot;dbSchema&quot;, StringHandling.DQUOTE(context.nms_db_Schema)&#xA;);"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Update_DB_Potential_Matches"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlRow_6"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="832">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_4" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Calculate matching scores...&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="3"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_4"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="832">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_5" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Insert no match records...&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="3"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_5"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="1088">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_6" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Insert extact match records...&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="3"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_6"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="1088">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_7" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Insert potential match records...&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="3"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_7"/>
+  </node>
+  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="704">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlInput_1" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_lLtHENHGEeaJE97Q8wxjVA" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="V9_X"/>
+    <elementParameter field="TEXT" name="HOST" value="context.nms_db_Server"/>
+    <elementParameter field="TEXT" name="TYPE" value="POSTGRESQL" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nms_db_Port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nms_db_Database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nms_db_Schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.nms_db_Login"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueFEfMnmqsXdRaMkOmuMsjI"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xD;&#xA;&quot;&#xD;&#xA;select COUNT_FEED, COUNT_DB&#xD;&#xA;from (select count(*) as COUNT_FEED from {{dbSchema}}.{{feedTableName}}) t1&#xD;&#xA;join (select count(*) as COUNT_DB from {{dbSchema}}.student) t2&#xD;&#xA;on true;&#xD;&#xA;&quot;,&#xD;&#xA;&quot;dbSchema&quot;, StringHandling.DQUOTE(context.nms_db_Schema),&#xD;&#xA;&quot;feedTableName&quot;, context.feedTableName&#xD;&#xA;)"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" value="postgres_id" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_CURSOR" value="false"/>
+    <elementParameter field="TEXT" name="CURSOR_SIZE" value="1000" show="false"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="COUNT_FEED"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="COUNT_DB"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="DB_Check_Feed"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlInput_1">
+      <column comment="" key="false" length="-1" name="COUNT_FEED" nullable="true" pattern="" precision="-1" sourceType="INT8" type="id_Long" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COUNT_DB" nullable="true" pattern="" precision="-1" sourceType="INT8" type="id_Long" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="704">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_2" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="globalMap.put(&quot;COUNT_FEED&quot;, row1.COUNT_FEED);&#xA;globalMap.put(&quot;COUNT_DB&quot;, row1.COUNT_DB);&#xA;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Java_SetVar"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_2"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="704">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_10" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Feed file was not loaded, please check...&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="4"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_10"/>
+  </node>
+  <node componentName="tWarn" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="1088">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_11" show="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Data processing done.&quot;"/>
+    <elementParameter field="TEXT" name="CODE" value="42"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="3"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tWarn_11"/>
+  </node>
+  <node componentName="tChronometerStart" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tChronometerStart_1" show="false"/>
+    <elementParameter field="TEXT" name="CAPTION" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tChronometerStop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tChronometerStop_1" show="false"/>
+    <elementParameter field="RADIO" name="SINCE_BEGINNING" value="false"/>
+    <elementParameter field="RADIO" name="SINCE_STARTER" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="STARTER" value="tChronometerStart_1"/>
+    <elementParameter field="CHECK" name="DISPLAY" value="false"/>
+    <elementParameter field="CHECK" name="DISPLAY_COMPONENT_NAME" value="true" show="false"/>
+    <elementParameter field="TEXT" name="CAPTION" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DISPLAY_READABLE_DURATION" value="false" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="960">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlInput_2" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_lLtHENHGEeaJE97Q8wxjVA" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tPostgresqlConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="V9_X" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="context.nms_db_Server" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="POSTGRESQL" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nms_db_Port" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nms_db_Database" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nms_db_Schema" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="context.nms_db_Login" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueFEfMnmqsXdRaMkOmuMsjI" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="StringUtils.templateString(&#xD;&#xA;&quot;&#xD;&#xA;select COUNT_NO_MATCH, COUNT_EXACT_MATCH, COUNT_POTENTIAL_MATCH&#xD;&#xA;from (select count(*) as COUNT_NO_MATCH from tmp_feed_no_match) t1&#xD;&#xA;join (select count(*) as COUNT_EXACT_MATCH from tmp_feed_exact_match) t2 on true&#xD;&#xA;join (select count(*) as COUNT_POTENTIAL_MATCH from tmp_feed_potential_match) t3 on true;&#xD;&#xA;&quot;&#xD;&#xA;)"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" value="postgres_id" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_CURSOR" value="false"/>
+    <elementParameter field="TEXT" name="CURSOR_SIZE" value="1000" show="false"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="COUNT_NO_MATCH"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="COUNT_EXACT_MATCH"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="COUNT_POTENTIAL_MATCH"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="DB_Match_Counts"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tPostgresqlInput_2">
+      <column comment="" key="false" length="-1" name="COUNT_NO_MATCH" nullable="true" pattern="" precision="-1" sourceType="INT8" type="id_Long" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COUNT_EXACT_MATCH" nullable="true" pattern="" precision="-1" sourceType="INT8" type="id_Long" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COUNT_POTENTIAL_MATCH" nullable="true" pattern="" precision="-1" sourceType="INT8" type="id_Long" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="960">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_3" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="globalMap.put(&quot;COUNT_NO_MATCH&quot;, row2.COUNT_NO_MATCH);&#xA;globalMap.put(&quot;COUNT_EXACT_MATCH&quot;, row2.COUNT_EXACT_MATCH);&#xA;globalMap.put(&quot;COUNT_POTENTIAL_MATCH&quot;, row2.COUNT_POTENTIAL_MATCH);&#xA;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Java_SetVar"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_3"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_3" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="StringBuilder sb = new StringBuilder();&#xA;sb.append(&quot;\n\n***** Start Job Stats *****\n&quot;);&#xA;sb.append(&quot;\nFeed count: &quot; + globalMap.get(&quot;COUNT_FEED&quot;));&#xA;sb.append(&quot;\nExisting DB count: &quot; + globalMap.get(&quot;COUNT_DB&quot;));&#xA;sb.append(&quot;\nExact Match: &quot; + globalMap.get(&quot;COUNT_EXACT_MATCH&quot;));&#xA;sb.append(&quot;\nPotential Match: &quot; + globalMap.get(&quot;COUNT_POTENTIAL_MATCH&quot;));&#xA;sb.append(&quot;\nNo Match: &quot; + globalMap.get(&quot;COUNT_NO_MATCH&quot;));&#xA;sb.append(&quot;\nTotal process time: &quot; + (((Long)globalMap.get(&quot;tChronometerStop_1_DURATION&quot;)) / 1000 ) / 60 + &quot; minutes &quot; + (((Long)globalMap.get(&quot;tChronometerStop_1_DURATION&quot;)) / 1000 ) % 60 + &quot; seconds&quot;);&#xA;sb.append(&quot;\n\n***** End Job Stats *****\n&quot;);&#xA;&#xA;Logging.logMessage(new Date(), jobName, Logging.PRIORITY_INFO, &quot;Log_Process_Data&quot;, sb.toString());"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Java_Log"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_3"/>
+  </node>
+  <connection connectorName="FLOW" label="log_message" lineStyle="0" metaname="tLogCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tLogCatcher_1" target="tJavaRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="log_message" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tJava_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk1" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tSetGlobalVar_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk5" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSetGlobalVar_1" offsetLabelX="0" offsetLabelY="0" source="tSetGlobalVar_1" target="tPostgresqlConnection_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk6" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tPostgresqlClose_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk2" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlConnection_1" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlConnection_1" target="tChronometerStart_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk16" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlClose_1" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlClose_1" target="tChronometerStop_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk17" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlRow_1" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_1" target="tPostgresqlRow_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk1" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostgresqlRow_1" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_1" target="tWarn_4">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk3" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlRow_2" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_2" target="tPostgresqlRow_4">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk12" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostgresqlRow_2" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_2" target="tWarn_5">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk4" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_2" target="tFileUnarchive_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.feedFileName.endsWith(&quot;.zip&quot;)"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If1" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_2" target="tWarn_3">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="!context.feedFileName.endsWith(&quot;.zip&quot;)"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If2" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileUnarchive_1" offsetLabelX="0" offsetLabelY="0" source="tFileUnarchive_1" target="tWarn_3">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk4" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlRow_3" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_3" target="tPostgresqlInput_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk11" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostgresqlRow_3" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_3" target="tWarn_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk7" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tFileExist_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileExist_1" target="tWarn_2">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="!((Boolean)globalMap.get(&quot;tFileExist_1_EXISTS&quot;))"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If4" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tFileExist_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileExist_1" target="tJava_2">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Boolean)globalMap.get(&quot;tFileExist_1_EXISTS&quot;))"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If3" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tWarn_3" offsetLabelX="0" offsetLabelY="0" source="tWarn_3" target="tPostgresqlRow_3">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk9" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlRow_4" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_4" target="tPostgresqlRow_5">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk13" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostgresqlRow_4" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_4" target="tWarn_6">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk5" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostgresqlRow_5" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_5" target="tWarn_7">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk6" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlRow_5" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_5" target="tPostgresqlRow_6">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk14" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tPostgresqlRow_6" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlRow_6" target="tWarn_11">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk2" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tWarn_5" offsetLabelX="0" offsetLabelY="0" source="tWarn_5" target="tPostgresqlInput_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk19" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tPostgresqlInput_1" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlInput_1" target="tJavaRow_2">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="COUNT_FEED"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="COUNT_DB"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row1" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tPostgresqlInput_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tPostgresqlInput_1" target="tPostgresqlRow_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="(Long)globalMap.get(&quot;COUNT_FEED&quot;) > 0"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If5" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tPostgresqlInput_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tPostgresqlInput_1" target="tWarn_10">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="(Long)globalMap.get(&quot;COUNT_FEED&quot;) == 0"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If6" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tChronometerStop_1" offsetLabelX="0" offsetLabelY="0" source="tChronometerStop_1" target="tJava_3">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk18" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tPostgresqlInput_2" offsetLabelX="0" offsetLabelY="0" source="tPostgresqlInput_2" target="tJavaRow_3">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="COUNT_POTENTIAL_MATCH"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row2" show="false"/>
+  </connection>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogCatcher_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPrejob_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSetGlobalVar_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostjob_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlConnection_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlClose_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileUnarchive_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_3" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileExist_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_3" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_4" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_5" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlRow_6" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_4" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_5" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_6" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_7" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlInput_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_10" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWarn_11" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tChronometerStart_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tChronometerStop_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostgresqlInput_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_3" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+</talendfile:ProcessType>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_NBU9YDQtEeiVM7NT3xJ87g" id="_NBTvQDQtEeiVM7NT3xJ87g" label="Post_Process_Subjobs" description="Post processing sub jobs after daily and weekly" creationDate="2018-03-30T10:15:38.677-0500" modificationDate="2018-06-12T14:18:13.869-0500" version="0.1" statusCode="" item="_NBU9YjQtEeiVM7NT3xJ87g" displayName="Post_Process_Subjobs">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_NBU9YTQtEeiVM7NT3xJ87g" path="ProcessDailyFeeds_Subjobs" locked="true" lockDate="2018-10-16T10:43:01.482-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_NBU9YjQtEeiVM7NT3xJ87g" property="_NBU9YDQtEeiVM7NT3xJ87g" state="_NBU9YTQtEeiVM7NT3xJ87g">
+    <process href="Post_Process_Subjobs_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_87aIcMFxEeaR3Zs1xbl6gw" id="_jq5-cNKREeaIT6sZ1bCLCg" label="Task_ClearDailyHistorical" purpose="ETL the Staging Table into the DB" description="Load the Staging Tables into the Marketing DB." creationDate="2016-12-13T14:23:04.565-0600" modificationDate="2018-05-09T14:39:29.655-0500" version="0.1" statusCode="" item="_87aIcsFxEeaR3Zs1xbl6gw" displayName="Task_ClearDailyHistorical">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_jrTnENKREeaIT6sZ1bCLCg" path="Process_Staging_Tables" locked="true" lockDate="2018-10-24T08:47:05.225-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_87aIcsFxEeaR3Zs1xbl6gw" property="_87aIcMFxEeaR3Zs1xbl6gw" state="_jrTnENKREeaIT6sZ1bCLCg">
+    <process href="Task_ClearDailyHistorical_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

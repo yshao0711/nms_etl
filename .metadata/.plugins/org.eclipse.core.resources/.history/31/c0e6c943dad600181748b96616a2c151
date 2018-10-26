@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_9Mo1gM1fEeiI6KFGhaAC5Q" id="_9MlLIM1fEeiI6KFGhaAC5Q" label="Process_Daily_Redemption" purpose="calculate daily coupon/credit redemption data" creationDate="2018-10-11T09:14:24.726-0500" modificationDate="2018-10-11T12:34:58.717-0500" version="0.1" statusCode="" item="_9Mo1gs1fEeiI6KFGhaAC5Q" displayName="Process_Daily_Redemption">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_9Mo1gc1fEeiI6KFGhaAC5Q" path="Process_Redemption_Data" locked="true" lockDate="2018-10-23T10:33:08.856-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_9Mo1gs1fEeiI6KFGhaAC5Q" property="_9Mo1gM1fEeiI6KFGhaAC5Q" state="_9Mo1gc1fEeiI6KFGhaAC5Q">
+    <process href="Process_Daily_Redemption_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

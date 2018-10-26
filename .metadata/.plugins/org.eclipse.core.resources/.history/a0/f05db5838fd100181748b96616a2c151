@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_PcFmMCGCEeicOPyVxRziPA" id="_PcB70CGCEeicOPyVxRziPA" label="Subjobs_Daily" creationDate="2018-03-06T15:06:30.033-0600" modificationDate="2018-10-11T11:58:34.875-0500" version="0.1" statusCode="" item="_PcFmMiGCEeicOPyVxRziPA" displayName="Subjobs_Daily">
+    <author href="../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_PcFmMSGCEeicOPyVxRziPA" path="ProcessDailyFeeds_Subjobs"/>
+  <TalendProperties:ProcessItem xmi:id="_PcFmMiGCEeicOPyVxRziPA" property="_PcFmMCGCEeicOPyVxRziPA" state="_PcFmMSGCEeicOPyVxRziPA">
+    <process href="Subjobs_Daily_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_xJK6wPfTEeeBj6gBgkIMcA" id="_r7F0YM2PEeiI6KFGhaAC5Q" label="CheckAndWaitForJob" creationDate="2018-01-12T14:04:16.619-0600" modificationDate="2018-10-11T17:00:31.668-0500" version="0.1" statusCode="" item="_xJK6wvfTEeeBj6gBgkIMcA" displayName="CheckAndWaitForJob">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_r7grIM2PEeiI6KFGhaAC5Q" path="Utils" locked="true" lockDate="2018-10-17T11:52:31.904-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_xJK6wvfTEeeBj6gBgkIMcA" property="_xJK6wPfTEeeBj6gBgkIMcA" state="_r7grIM2PEeiI6KFGhaAC5Q">
+    <process href="CheckAndWaitForJob_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

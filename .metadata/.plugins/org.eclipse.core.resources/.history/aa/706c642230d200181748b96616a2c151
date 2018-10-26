@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_fXli8M4OEeahNJuZ_FX3aA" id="_i6DyUAgxEeekqfzVNGsKXg" label="Insert_NewLocations" purpose="Loads new members" description="Inserts new member records." creationDate="2016-12-29T15:33:51.132-0600" modificationDate="2018-10-04T12:33:56.547-0500" version="0.1" statusCode="DEV" item="_fXli8s4OEeahNJuZ_FX3aA" displayName="Insert_NewLocations">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_i6geQAgxEeekqfzVNGsKXg" path="Process_Update_Location_Data" locked="true" lockDate="2018-10-17T12:13:36.723-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_fXli8s4OEeahNJuZ_FX3aA" property="_fXli8M4OEeahNJuZ_FX3aA" state="_i6geQAgxEeekqfzVNGsKXg">
+    <process href="Insert_NewLocations_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

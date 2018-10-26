@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmi:id="_dgDDENDwEei8iJaJKchqdA" confirmationNeeded="false" name="Default">
+  <contextParameter xmi:id="_dgDDEdDwEei8iJaJKchqdA" comment="" name="nms_dev_Database" prompt="nms_dev_Database?" promptNeeded="false" type="id_String" value="NMS1_dev"/>
+  <contextParameter xmi:id="_dgDDEtDwEei8iJaJKchqdA" comment="" name="nms_dev_Schema" prompt="nms_dev_Schema?" promptNeeded="false" type="id_String" value="public"/>
+  <contextParameter xmi:id="_dgDDE9DwEei8iJaJKchqdA" comment="" name="nms_dev_Server" prompt="nms_dev_Server?" promptNeeded="false" type="id_String" value="ec2-18-221-25-155.us-east-2.compute.amazonaws.com"/>
+  <contextParameter xmi:id="_dgDDFNDwEei8iJaJKchqdA" comment="" name="nms_dev_Login" prompt="nms_dev_Login?" promptNeeded="false" type="id_String" value="pega@iway"/>
+  <contextParameter xmi:id="_dgDDFdDwEei8iJaJKchqdA" comment="" name="nms_dev_Password" prompt="nms_dev_Password?" promptNeeded="false" type="id_Password" value="AgfnKm4E3u0="/>
+  <contextParameter xmi:id="_dgDDFtDwEei8iJaJKchqdA" comment="" name="nms_dev_Port" prompt="nms_dev_Port?" promptNeeded="false" type="id_String" value="5433"/>
+</talendfile:ContextType>

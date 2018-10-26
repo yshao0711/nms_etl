@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_JguiALFAEeikBciHnkH-5g" id="_JgresLFAEeikBciHnkH-5g" label="ProcessDailyMedallia" creationDate="2018-09-05T14:16:10.910-0500" modificationDate="2018-10-11T17:13:44.569-0500" version="0.1" statusCode="" item="_JguiArFAEeikBciHnkH-5g" displayName="ProcessDailyMedallia">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_JguiAbFAEeikBciHnkH-5g" path="Medallia" locked="true" lockDate="2018-10-17T14:16:14.536-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_JguiArFAEeikBciHnkH-5g" property="_JguiALFAEeikBciHnkH-5g" state="_JguiAbFAEeikBciHnkH-5g">
+    <process href="ProcessDailyMedallia_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

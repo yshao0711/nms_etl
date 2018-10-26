@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_RyyXUFh2Eei_EJm82Z_azQ" id="_Ryv7EFh2Eei_EJm82Z_azQ" label="SalesforceImport" creationDate="2018-05-15T14:29:25.828-0500" modificationDate="2018-06-12T10:43:43.680-0500" version="0.1" statusCode="" item="_RyyXUlh2Eei_EJm82Z_azQ" displayName="SalesforceImport">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_RyyXUVh2Eei_EJm82Z_azQ" path="Salesforce" locked="true" lockDate="2018-10-24T08:53:00.543-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_RyyXUlh2Eei_EJm82Z_azQ" property="_RyyXUFh2Eei_EJm82Z_azQ" state="_RyyXUVh2Eei_EJm82Z_azQ">
+    <process href="SalesforceImport_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

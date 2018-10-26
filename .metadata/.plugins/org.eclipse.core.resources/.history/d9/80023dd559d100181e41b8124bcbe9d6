@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_7E-JQChqEeikmpP71yGSvg" id="__sWd0ClLEeikmpP71yGSvg" label="Task_Monitor_Reservation_Counts" creationDate="2018-03-15T11:07:13.107-0500" modificationDate="2018-10-15T15:37:44.491-0500" version="0.1" statusCode="" item="_7E-JQihqEeikmpP71yGSvg" displayName="Task_Monitor_Reservation_Counts">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="__sm8gClLEeikmpP71yGSvg" path="Process_Data_Consistency_Monitor"/>
+  <TalendProperties:ProcessItem xmi:id="_7E-JQihqEeikmpP71yGSvg" property="_7E-JQChqEeikmpP71yGSvg" state="__sm8gClLEeikmpP71yGSvg">
+    <process href="Task_Monitor_Reservation_Counts_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

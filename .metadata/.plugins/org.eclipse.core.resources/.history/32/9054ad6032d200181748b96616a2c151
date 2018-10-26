@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_QoHUgA9OEeeCc7FlsHOqqA" id="_QoGGYA9OEeeCc7FlsHOqqA" label="Task_ClearExpungedMemberData" purpose="Clear all member data that has been expunged" creationDate="2017-03-22T17:24:05.575-0500" modificationDate="2018-10-10T10:39:59.623-0500" version="0.1" statusCode="" item="_QoHUgg9OEeeCc7FlsHOqqA" displayName="Task_ClearExpungedMemberData">
+    <author href="../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_QoHUgQ9OEeeCc7FlsHOqqA" path=""/>
+  <TalendProperties:ProcessItem xmi:id="_QoHUgg9OEeeCc7FlsHOqqA" property="_QoHUgA9OEeeCc7FlsHOqqA" state="_QoHUgQ9OEeeCc7FlsHOqqA">
+    <process href="Task_ClearExpungedMemberData_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

@@ -1,0 +1,475 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] ZIPCAR_MARKETINGDW Codes Master
+[INFO] ZIPCAR_MARKETINGDW Routines
+[INFO] ZIPCAR_MARKETINGDW Task_ClearDailyHistorical (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Sent (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport_Push_Feeds (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW DoFtp (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Log_Send (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW PGPEncryptDecrypt (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Unsubs (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport_Process_Feeds (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Opens (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Log_Control (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Bounces (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Clicks (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport_Process_Staging (Job Designs)
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport (Job Designs)
+[INFO] 
+[INFO] Using the builder org.apache.maven.lifecycle.internal.builder.multithreaded.MultiThreadedBuilder with a thread count of 8
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW Codes Master 6.4.1
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW Routines 6.4.1
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW PGPEncryptDecrypt (Job Designs) 0.1.0
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW SalesforceImport_Push_Feeds (Job Designs) 0.1.0
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW Task_ClearDailyHistorical (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW DoFtp (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ routines ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ Task_ClearDailyHistorical ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ DoFtp ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ PGPEncryptDecrypt ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ SalesforceImport_Push_Feeds ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 0 resource
+[INFO] Copying 0 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ DoFtp ---
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ SalesforceImport_Push_Feeds ---
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ Task_ClearDailyHistorical ---
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ PGPEncryptDecrypt ---
+[INFO] Copying 353 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ routines ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ Task_ClearDailyHistorical ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ DoFtp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ SalesforceImport_Push_Feeds ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ PGPEncryptDecrypt ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] Copying 2 resources
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ DoFtp ---
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ SalesforceImport_Push_Feeds ---
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ Task_ClearDailyHistorical ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ PGPEncryptDecrypt ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ Task_ClearDailyHistorical ---
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ PGPEncryptDecrypt ---
+[INFO] Copying 0 resource
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ SalesforceImport_Push_Feeds ---
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ DoFtp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ Task_ClearDailyHistorical ---
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ DoFtp ---
+[INFO] 
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ SalesforceImport_Push_Feeds ---
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ routines ---
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ PGPEncryptDecrypt ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ routines ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ routines ---
+[INFO] Tests are skipped.
+[INFO] Tests are skipped.
+[INFO] Tests are skipped.
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] 
+[INFO] 
+[INFO] Tests are skipped.
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ DoFtp ---
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ PGPEncryptDecrypt ---
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ routines ---
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ SalesforceImport_Push_Feeds ---
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ Task_ClearDailyHistorical ---
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/pgpencryptdecrypt_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/doftp_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/salesforceimport_push_feeds_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/task_cleardailyhistorical_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/routines-6.4.1.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW SalesforceImport_Process_Feeds (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO]                                                                         
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW ProcessStaging_Log_Send (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW ProcessStaging_Clicks (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW ProcessStaging_Log_Control (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW ProcessStaging_Opens (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW ProcessStaging_Sent (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW ProcessStaging_Bounces (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ ProcessStaging_Log_Send ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ ProcessStaging_Bounces ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ SalesforceImport_Process_Feeds ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ ProcessStaging_Opens ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ ProcessStaging_Sent ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ ProcessStaging_Clicks ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ ProcessStaging_Log_Control ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ ProcessStaging_Bounces ---
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ SalesforceImport_Process_Feeds ---
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ ProcessStaging_Sent ---
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ ProcessStaging_Opens ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ SalesforceImport_Process_Feeds ---
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ ProcessStaging_Clicks ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ SalesforceImport_Process_Feeds ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ ProcessStaging_Sent ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ SalesforceImport_Process_Feeds ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ ProcessStaging_Sent ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ ProcessStaging_Sent ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ ProcessStaging_Clicks ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ SalesforceImport_Process_Feeds ---
+[INFO] Copying 0 resource
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ProcessStaging_Sent ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ ProcessStaging_Log_Send ---
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ ProcessStaging_Clicks ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ ProcessStaging_Clicks ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ ProcessStaging_Sent ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ SalesforceImport_Process_Feeds ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ProcessStaging_Clicks ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ ProcessStaging_Clicks ---
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ ProcessStaging_Log_Control ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ ProcessStaging_Opens ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ ProcessStaging_Bounces ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ ProcessStaging_Opens ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ ProcessStaging_Bounces ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ ProcessStaging_Bounces ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ ProcessStaging_Log_Control ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ProcessStaging_Bounces ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ ProcessStaging_Log_Control ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ ProcessStaging_Log_Control ---
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ ProcessStaging_Opens ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ProcessStaging_Log_Control ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ProcessStaging_Opens ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ ProcessStaging_Opens ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ ProcessStaging_Log_Control ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ ProcessStaging_Log_Send ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ ProcessStaging_Log_Send ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ ProcessStaging_Log_Send ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ProcessStaging_Log_Send ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ ProcessStaging_Log_Send ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ ProcessStaging_Bounces ---
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW ProcessStaging_Unsubs (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ ProcessStaging_Unsubs ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ ProcessStaging_Unsubs ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ ProcessStaging_Unsubs ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ ProcessStaging_Unsubs ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ ProcessStaging_Unsubs ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ProcessStaging_Unsubs ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ ProcessStaging_Unsubs ---
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/processstaging_sent_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/processstaging_clicks_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/salesforceimport_process_feeds_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/processstaging_opens_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/processstaging_bounces_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/processstaging_log_control_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/processstaging_log_send_0_1.jar
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/processstaging_unsubs_0_1.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW SalesforceImport_Process_Staging (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ SalesforceImport_Process_Staging ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ SalesforceImport_Process_Staging ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ SalesforceImport_Process_Staging ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ SalesforceImport_Process_Staging ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ SalesforceImport_Process_Staging ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ SalesforceImport_Process_Staging ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ SalesforceImport_Process_Staging ---
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/salesforceimport_process_staging_0_1.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ZIPCAR_MARKETINGDW SalesforceImport (Job Designs) 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ SalesforceImport ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ SalesforceImport ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:copy-resources (copy-running-resources) @ SalesforceImport ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ SalesforceImport ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ SalesforceImport ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ SalesforceImport ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ SalesforceImport ---
+[INFO] Building jar: /Users/yu/OneDrive/projects/ETL/.Java/target/salesforceimport_0_1.jar
+[INFO] 
+[INFO] --- maven-assembly-plugin:2.5.5:single (default) @ SalesforceImport ---
+[INFO] Reading assembly descriptor: /Users/yu/OneDrive/projects/ETL/.Java/src/main/assemblies/assembly_SalesforceImport_0.1.xml
+[WARNING] The following patterns were never triggered in this artifact inclusion filter:
+o  '${pigudfs.binaries.includes.set}'
+
+[INFO] Building zip: /Users/yu/OneDrive/projects/ETL/.Java/target/salesforceimport_0_1.zip
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] ZIPCAR_MARKETINGDW Codes Master ................... SUCCESS [  0.002 s]
+[INFO] ZIPCAR_MARKETINGDW Routines ....................... SUCCESS [  1.584 s]
+[INFO] ZIPCAR_MARKETINGDW Task_ClearDailyHistorical (Job Designs)  SUCCESS [  1.369 s]
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Sent (Job Designs)  SUCCESS [  0.513 s]
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport_Push_Feeds (Job Designs)  SUCCESS [  1.366 s]
+[INFO] ZIPCAR_MARKETINGDW DoFtp (Job Designs) ............ SUCCESS [  1.362 s]
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Log_Send (Job Designs)  SUCCESS [  0.604 s]
+[INFO] ZIPCAR_MARKETINGDW PGPEncryptDecrypt (Job Designs)  SUCCESS [  1.363 s]
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Unsubs (Job Designs)  SUCCESS [  0.416 s]
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport_Process_Feeds (Job Designs)  SUCCESS [  0.589 s]
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Opens (Job Designs)  SUCCESS [  0.588 s]
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Log_Control (Job Designs)  SUCCESS [  0.582 s]
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Bounces (Job Designs)  SUCCESS [  0.597 s]
+[INFO] ZIPCAR_MARKETINGDW ProcessStaging_Clicks (Job Designs)  SUCCESS [  0.521 s]
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport_Process_Staging (Job Designs)  SUCCESS [  0.265 s]
+[INFO] ZIPCAR_MARKETINGDW SalesforceImport (Job Designs) . SUCCESS [  2.291 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.704 s (Wall Clock)
+[INFO] Finished at: 2018-10-24T09:10:29-06:00
+[INFO] Final Memory: 13M/694M
+[INFO] ------------------------------------------------------------------------

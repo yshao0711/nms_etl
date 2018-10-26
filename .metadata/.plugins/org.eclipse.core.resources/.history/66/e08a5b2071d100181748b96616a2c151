@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_fXli8M4OEeahNJuZ_FX3aA" id="_oDeOsDQlEeiVM7NT3xJ87g" label="Update_MemberSummaryTable" purpose="Updates the Member Summary Table" description="Use flat summary table s_member to improve query performance" creationDate="2016-12-29T15:33:51.132-0600" modificationDate="2018-10-16T13:27:15.583-0500" version="0.1" statusCode="DEV" item="_fXli8s4OEeahNJuZ_FX3aA" displayName="Update_MemberSummaryTable">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_oEEEkDQlEeiVM7NT3xJ87g" path="Process_Update_Member_Data" locked="true" lockDate="2018-10-16T13:24:29.293-0500">
+    <locker href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:ProcessItem xmi:id="_fXli8s4OEeahNJuZ_FX3aA" property="_fXli8M4OEeahNJuZ_FX3aA" state="_oEEEkDQlEeiVM7NT3xJ87g">
+    <process href="Update_MemberSummaryTable_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>

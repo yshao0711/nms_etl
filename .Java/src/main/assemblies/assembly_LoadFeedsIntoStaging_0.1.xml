@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	<id>bin</id>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<formats>
+		<format>zip</format>
+	</formats>
+
+	<files>
+		<file> <!-- jobInfo.properties -->
+			<source>${basedir}/src/main/templates/jobInfo_template.properties
+			</source>
+			<outputDirectory>.</outputDirectory>
+			<destName>jobInfo.properties</destName>
+			<filtered>true</filtered>
+		</file>
+		<file> <!-- sh -->
+			<source>${basedir}/src/main/templates/Job_run_template.sh</source>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<destName>${talend.job.name}_run.sh</destName>
+			<filtered>true</filtered>
+		</file>
+		<file> <!-- bat -->
+			<source>${basedir}/src/main/templates/Job_run_template.bat</source>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<destName>${talend.job.name}_run.bat</destName>
+			<filtered>true</filtered>
+		</file>
+	</files>
+
+	<fileSets>
+		<fileSet>
+<!-- templates -->
+			<directory>${templates.dir}</directory>
+			<outputDirectory>${talend.job.name}/src/main/templates/
+			</outputDirectory>
+			<includes>
+				<include>**</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- log4j resources -->
+			<directory>${log4j.resources.dir}</directory>
+			<outputDirectory>${output.resources.dir}/
+			</outputDirectory>
+			<includes>
+				<include>log4j.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- log4j.xml for running -->
+			<directory>${log4j.running.dir}</directory>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<includes>
+				<include>log4j.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- xmlMappings resources -->
+			<directory>${xmlMappings.resources.dir}</directory>
+			<outputDirectory>${output.resources.dir}/xmlMappings/
+			</outputDirectory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- xmlMappings for running -->
+			<directory>${xmlMappings.running.dir}</directory>
+			<outputDirectory>${talend.job.name}/xmlMappings/
+			</outputDirectory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- rules resources -->
+			<directory>${rules.resources.dir}</directory>
+			<outputDirectory>${output.resources.dir}/rules/
+			</outputDirectory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- assembly_*.xml -->
+			<directory>${assemblies.dir}</directory>
+			<outputDirectory>${talend.job.name}/src/main/assemblies/
+			</outputDirectory>
+			<includes>
+				<include>assembly_${talend.job.name}_${talend.job.version}.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- pom_*.xml -->
+			<directory>${poms.dir}</directory>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>pom_routines.xml</include>
+				<include>pom_beans.xml</include>
+				<include>pom_${talend.job.name}_${talend.job.version}.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- pom_pigudfs.xml -->
+			<directory>${pigudfs.poms.dir}</directory>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<includes>
+				<include>pom_pigudfs.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet> <!-- add items -->
+			<directory>${items.dir}</directory>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<includes>
+				<include>**</include>
+			</includes>
+		</fileSet>
+		<fileSet> <!-- add java source codes -->
+			<directory>${sourcecodes.dir}</directory>
+			<outputDirectory>${talend.job.name}/src/main/java/</outputDirectory>
+			<includes>
+				<include>routines/**</include>
+				<include>beans/**</include>
+				<include>${talend.job.path}/**</include>
+			</includes>
+		</fileSet>
+		<fileSet> <!-- add PigUDFs source codes -->
+			<directory>${pigudfs.sourcecodes.dir}</directory>
+			<outputDirectory>${talend.job.name}/src/main/java/</outputDirectory>
+			<includes>
+				<include>pigudf/**</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- add context resources -->
+			<directory>${resources.dir}</directory>
+			<outputDirectory>${output.resources.dir}/
+			</outputDirectory>
+			<includes>
+				<include>${talend.job.path}/**</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- add test source codes -->
+			<directory>${test.sourcecodes.dir}</directory>
+			<outputDirectory>${talend.job.name}/src/test/java/</outputDirectory>
+			<includes>
+				<include>${talend.job.path}/**</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- add test context resources -->
+			<directory>${test.resources.dir}</directory>
+			<outputDirectory>${talend.job.name}/src/test/resources/
+			</outputDirectory>
+			<includes>
+				<include>${talend.job.path}/**</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- junits reports -->
+			<directory>${test.reports.dir}</directory>
+			<outputDirectory>sunfire-reports</outputDirectory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+<!-- add context resources for running -->
+			<directory>${contexts.running.dir}</directory>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<includes>
+				<include>${talend.job.path}/**</include>
+			</includes>
+		</fileSet>
+		<!-- If have children jobs, will add here -->
+		 <fileSet>
+<!-- microservice config files -->
+            <directory>${microservice.configs.dir}</directory>
+            <outputDirectory>${output.resources.dir}/</outputDirectory>
+            <includes>
+                <include>config/**</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+<!-- microservice running config files -->
+            <directory>${microservice.running.configs.dir}</directory>
+            <outputDirectory>${talend.job.name}</outputDirectory>
+            <includes>
+                <include>config/**</include>
+            </includes>
+        </fileSet>
+       <fileSet>
+<!-- survivorship rules -->
+			<directory>${survivorship.rules.dir}</directory>
+			<outputDirectory>${talend.job.name}/items/${talend.project.name.lowercase}/metadata/survivorship/</outputDirectory>
+			<includes>
+			</includes>
+		</fileSet>
+	<fileSet>
+<!--add children pom files.-->
+<outputDirectory>${talend.job.name}</outputDirectory>
+<directory>${poms.dir}</directory>
+<includes>
+<include>pom_StageFeed_Waivers_0.1.xml</include>
+<include>pom_StageFeed_MemberAttritionReasons_0.1.xml</include>
+<include>pom_StageFeed_ExchangeRates_0.1.xml</include>
+<include>pom_StageFeed_AccountAdmins_0.1.xml</include>
+<include>pom_StageFeed_StrongviewDeviceData_0.1.xml</include>
+<include>pom_StageFeed_StrongviewTrackData_0.1.xml</include>
+<include>pom_StageFeed_MemberLastRegistrationSess_0.1.xml</include>
+<include>pom_StageFeed_ApplicationsFinal_0.1.xml</include>
+<include>pom_StageFeed_WexFuelData_0.1.xml</include>
+<include>pom_StageFeed_MemberRejoinHistory_0.1.xml</include>
+<include>pom_StageFeed_RatePlans_0.1.xml</include>
+<include>pom_Task_ClearExpungedMembersFromFeeds_0.1.xml</include>
+<include>pom_StageFeed_CorporateApplications_0.1.xml</include>
+<include>pom_StageFeed_StrongviewSuccessData_0.1.xml</include>
+<include>pom_StageFeed_AccountAffiliates_0.1.xml</include>
+<include>pom_StageFeed_Reservations_NP_0.1.xml</include>
+<include>pom_StageFeed_Member_0.1.xml</include>
+<include>pom_StageFeed_Communities_NP_0.1.xml</include>
+<include>pom_StageFeed_RegistrationSessionHistories_0.1.xml</include>
+<include>pom_StageFeed_CouponClaims_0.1.xml</include>
+<include>pom_StageFeed_Coupons_0.1.xml</include>
+<include>pom_StageFeed_AccountRatePlanMap_0.1.xml</include>
+<include>pom_StageFeed_Credits_0.1.xml</include>
+<include>pom_StageFeed_MemberJoinInfo_0.1.xml</include>
+<include>pom_StageFeed_StrongviewMailingData_0.1.xml</include>
+<include>pom_StageFeed_Transactions_0.1.xml</include>
+<include>pom_StageFeed_Zipfleets_0.1.xml</include>
+<include>pom_StageFeed_Accounts_0.1.xml</include>
+<include>pom_StageFeed_StrongviewProgramFiles_0.1.xml</include>
+<include>pom_StageFeed_Affiliates_0.1.xml</include>
+<include>pom_StageFeed_Locations_NP_0.1.xml</include>
+<include>pom_StageFeed_StrongviewProgExportData_0.1.xml</include>
+<include>pom_StageFeed_Vehicles_NP_0.1.xml</include>
+<include>pom_StageFeed_Vehicles_0.1.xml</include>
+<include>pom_StageFeed_StrongviewAggData_0.1.xml</include>
+<include>pom_StageFeed_StrongviewConvData_0.1.xml</include>
+<include>pom_StageFeed_Addresses_0.1.xml</include>
+<include>pom_StageFeed_Locations_0.1.xml</include>
+<include>pom_StageFeed_Reservations_0.1.xml</include>
+<include>pom_StageFeed_Zones_0.1.xml</include>
+<include>pom_StageFeed_RegistrationSessions_0.1.xml</include>
+<include>pom_StageFeed_MemberLastApplicationInfo_0.1.xml</include>
+<include>pom_StageFeed_MembersExt_0.1.xml</include>
+<include>pom_StageFeed_MemberLeftInfo_0.1.xml</include>
+<include>pom_StageFeed_StrongviewDownloadFiles_0.1.xml</include>
+<include>pom_StageFeed_WaiverPlans_0.1.xml</include>
+<include>pom_StageFeed_SupersededReservations_0.1.xml</include>
+<include>pom_StageFeed_AccountMemberMap_0.1.xml</include>
+</includes>
+</fileSet>
+<fileSet>
+<!--add children src resources files.-->
+<outputDirectory>${talend.job.name}/src/main/java/</outputDirectory>
+<directory>${sourcecodes.dir}</directory>
+<includes>
+<include>zipcar_marketingdw/stagefeed_waivers_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberattritionreasons_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_exchangerates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountadmins_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewdevicedata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewtrackdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberlastregistrationsess_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_applicationsfinal_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_wexfueldata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberrejoinhistory_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_rateplans_0_1/**</include>
+<include>zipcar_marketingdw/task_clearexpungedmembersfromfeeds_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_corporateapplications_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewsuccessdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountaffiliates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_reservations_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_member_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_communities_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_registrationsessionhistories_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_couponclaims_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_coupons_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountrateplanmap_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_credits_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberjoininfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewmailingdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_transactions_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_zipfleets_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accounts_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewprogramfiles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_affiliates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_locations_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewprogexportdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_vehicles_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_vehicles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewaggdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewconvdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_addresses_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_locations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_reservations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_zones_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_registrationsessions_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberlastapplicationinfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_membersext_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberleftinfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewdownloadfiles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_waiverplans_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_supersededreservations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountmembermap_0_1/**</include>
+</includes>
+</fileSet>
+<fileSet>
+<!--add children context files to resources.-->
+<outputDirectory>${talend.job.name}/src/main/resources/</outputDirectory>
+<directory>${resources.dir}</directory>
+<includes>
+<include>zipcar_marketingdw/stagefeed_waivers_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberattritionreasons_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_exchangerates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountadmins_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewdevicedata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewtrackdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberlastregistrationsess_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_applicationsfinal_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_wexfueldata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberrejoinhistory_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_rateplans_0_1/**</include>
+<include>zipcar_marketingdw/task_clearexpungedmembersfromfeeds_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_corporateapplications_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewsuccessdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountaffiliates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_reservations_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_member_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_communities_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_registrationsessionhistories_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_couponclaims_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_coupons_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountrateplanmap_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_credits_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberjoininfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewmailingdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_transactions_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_zipfleets_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accounts_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewprogramfiles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_affiliates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_locations_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewprogexportdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_vehicles_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_vehicles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewaggdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewconvdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_addresses_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_locations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_reservations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_zones_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_registrationsessions_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberlastapplicationinfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_membersext_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberleftinfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewdownloadfiles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_waiverplans_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_supersededreservations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountmembermap_0_1/**</include>
+</includes>
+</fileSet>
+<fileSet>
+<!--add children context files for running.-->
+<outputDirectory>${talend.job.name}</outputDirectory>
+<directory>${contexts.running.dir}</directory>
+<includes>
+<include>zipcar_marketingdw/stagefeed_waivers_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberattritionreasons_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_exchangerates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountadmins_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewdevicedata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewtrackdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberlastregistrationsess_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_applicationsfinal_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_wexfueldata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberrejoinhistory_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_rateplans_0_1/**</include>
+<include>zipcar_marketingdw/task_clearexpungedmembersfromfeeds_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_corporateapplications_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewsuccessdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountaffiliates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_reservations_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_member_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_communities_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_registrationsessionhistories_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_couponclaims_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_coupons_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountrateplanmap_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_credits_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberjoininfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewmailingdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_transactions_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_zipfleets_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accounts_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewprogramfiles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_affiliates_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_locations_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewprogexportdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_vehicles_np_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_vehicles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewaggdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewconvdata_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_addresses_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_locations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_reservations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_zones_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_registrationsessions_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberlastapplicationinfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_membersext_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_memberleftinfo_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_strongviewdownloadfiles_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_waiverplans_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_supersededreservations_0_1/**</include>
+<include>zipcar_marketingdw/stagefeed_accountmembermap_0_1/**</include>
+</includes>
+</fileSet>
+</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>lib</outputDirectory>
+			<includes>
+				<include>${talend.libraries.includes.set}</include>
+			</includes>
+			<!-- without version for talend libraries -->
+			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}
+			</outputFileNameMapping>
+			<useProjectArtifact>false</useProjectArtifact>
+		</dependencySet>
+		<dependencySet>
+			<outputDirectory>lib</outputDirectory>
+			<excludes>
+				<exclude>${talend.libraries.excludes.set}</exclude>
+				<exclude>${talend.jobs.excludes.set}</exclude>
+			</excludes>
+			<useProjectArtifact>false</useProjectArtifact>
+		</dependencySet>
+		<!-- for children jobs -->
+		<dependencySet>
+			<outputDirectory>${talend.job.name}</outputDirectory>
+			<includes>
+				<include>${jobs.binaries.includes.set}</include>
+			</includes>
+			<outputFileNameMapping>${artifact.build.finalName}.${artifact.extension}</outputFileNameMapping>
+			<useProjectArtifact>true</useProjectArtifact>
+		</dependencySet>
+	</dependencySets>
+	<moduleSets>
+		<moduleSet>
+			<!-- for routines or talend libs -->
+			<useAllReactorProjects>true</useAllReactorProjects>
+			<includes>
+				<include>${routines.binaries.includes.set}</include>
+			</includes>
+			<binaries>
+				<outputDirectory>lib</outputDirectory>
+				<includeDependencies>false</includeDependencies>
+				<unpack>false</unpack>
+				<outputFileNameMapping>${module.artifactId}.${module.extension}
+				</outputFileNameMapping>
+			</binaries>
+		</moduleSet>
+		<moduleSet>
+			<!-- for pigudfs or talend libs -->
+			<useAllReactorProjects>true</useAllReactorProjects>
+			<includes>
+				<include>${pigudfs.binaries.includes.set}</include>
+			</includes>
+			<binaries>
+				<outputDirectory>lib</outputDirectory>
+				<includeDependencies>false</includeDependencies>
+				<unpack>false</unpack>
+				<outputFileNameMapping>${module.artifactId}.${module.extension}
+				</outputFileNameMapping>
+			</binaries>
+		</moduleSet>
+	</moduleSets>
+</assembly>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_5ajmANHGEeaJE97Q8wxjVA" id="_lLtHENHGEeaJE97Q8wxjVA" label="Redshift_Marketing" purpose="Marketing Database" description="Connection to the Redshift Marketing schema" creationDate="2017-01-03T09:11:26.815-0600" modificationDate="2017-05-19T09:30:05.914-0500" version="0.1" statusCode="" item="_5ajmAtHGEeaJE97Q8wxjVA" displayName="Redshift_Marketing">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_5ajmAdHGEeaJE97Q8wxjVA" path="" locked="true" lockDate="2018-10-15T21:33:39.422-0500">
+    <locker href="../../talend.project#_zk0bcNDoEeiZP77ZcaPn7g"/>
+  </TalendProperties:ItemState>
+  <TalendProperties:DatabaseConnectionItem xmi:id="_5ajmAtHGEeaJE97Q8wxjVA" property="_5ajmANHGEeaJE97Q8wxjVA" state="_5ajmAdHGEeaJE97Q8wxjVA">
+    <connection href="Redshift_Marketing_0.1.item#_5ai-8NHGEeaJE97Q8wxjVA"/>
+  </TalendProperties:DatabaseConnectionItem>
+</xmi:XMI>

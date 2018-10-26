@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Property xmi:id="_fXli8M4OEeahNJuZ_FX3aA" id="_bNmtkJTGEeeteqzcVYviUA" label="Update_MemberToLocationsDistance" purpose="Update changed member to location distances" creationDate="2016-12-29T15:33:51.132-0600" modificationDate="2018-10-11T17:17:54.064-0500" version="0.1" statusCode="DEV" item="_fXli8s4OEeahNJuZ_FX3aA" displayName="Update_MemberToLocationsDistance">
+    <author href="../../talend.project#_KVq_4sFLEeavMtz76OWkXA"/>
+  </TalendProperties:Property>
+  <TalendProperties:ItemState xmi:id="_bNs0MJTGEeeteqzcVYviUA" path="Process_Member_To_Locations_Distance"/>
+  <TalendProperties:ProcessItem xmi:id="_fXli8s4OEeahNJuZ_FX3aA" property="_fXli8M4OEeahNJuZ_FX3aA" state="_bNs0MJTGEeeteqzcVYviUA">
+    <process href="Update_MemberToLocationsDistance_0.1.item#/"/>
+  </TalendProperties:ProcessItem>
+</xmi:XMI>
